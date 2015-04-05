@@ -5,6 +5,10 @@ angular.module('surveys').config(['$stateProvider',
 	function($stateProvider) {
 		// Surveys state routing
 		$stateProvider.
+		state('choose-template-surveyclientview', {
+			url: '/surveys/choose-survey-template',
+			templateUrl: 'modules/surveys/views/choose-template-survey.client.view.html'
+		}).
 		state('listSurveys', {
 			url: '/surveys',
 			templateUrl: 'modules/surveys/views/list-surveys.client.view.html'

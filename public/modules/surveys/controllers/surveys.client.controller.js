@@ -4,7 +4,27 @@
 angular.module('surveys').controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys',
 	function($scope, $stateParams, $location, Authentication, Surveys) {
 		$scope.authentication = Authentication;
-
+        
+        //save the choosed survey template
+        $scope.radioSurveyTemplate = '';
+        $scope.surveyTemplateName = '';
+        
+        //load different template page
+        $scope.createTemplate = function () {
+            //$scope.surveyTemplateName = this.surveyTemplateName;
+            if ($scope.radioSurveyTemplate === 'multiple') {
+                console.log("multiple test pass");
+                $location.path('surveys');
+            } else if ($scope.radioSurveyTemplate === 'agreeDisagree') {
+                console.log("agree/dis test pass");
+                $location.path('surveys');
+            } else if ($scope.radioSurveyTemplate === 'shortAnswer') {
+                console.log("short answer test pass");
+                $location.path('surveys');
+            }
+            
+        };
+        
 		// Create new Survey
 		$scope.create = function() {
 			// Create new Survey object
