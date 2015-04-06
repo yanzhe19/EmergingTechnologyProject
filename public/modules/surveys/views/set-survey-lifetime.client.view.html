@@ -1,12 +1,12 @@
 <section data-ng-controller="SurveysController">
     <!--This is the view to Set survey lifetime -->
 
-    <div class="row">
+    <div class="row col-md-5 col-md-offset-3">
         <form class="form-horizontal" name="lifeTimeForm" data-ng-submit="submit()" novalidate>
             <fieldset>
                 <!--set suevey start time-->
                 <div class="form-group">
-                    <div class="dropdown col-md-5 col-md-offset-3">
+                    <div class="dropdown">
                         <h3>Survey start time</h3>
                         <a class="dropdown-toggle" id="surveyStartDropDown" role="button" data-toggle="dropdown" data-target="#" href="#">
                             <div class="input-group"><input type="text" name="surveyStartTime" class="form-control" data-ng-model="data.dateDropDownInput" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -20,7 +20,7 @@
 
                 <!--set suevey end time-->
                 <div class="form-group">
-                    <div class="dropdown col-md-5 col-md-offset-3">
+                    <div class="dropdown">
                         <h3>Survey end time</h3>
                         <a class="dropdown-toggle" id="surveyEndDropDown" role="button" data-toggle="dropdown" data-target="#" href="#">
                             <div class="input-group"><input type="text" class="form-control" name="surveyEndTime" data-ng-model="data.dateDropDownInput1" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -32,6 +32,7 @@
                     </div>
                 </div>
 
+               <br>
                 <!--submit button, disabled if required field(start time and end time) is empty-->
                 <div class="form-group">
                     <input type="submit" class="btn btn-default" ng-disabled="lifeTimeForm.$invalid">
@@ -40,15 +41,10 @@
                 <div data-ng-show="error" class="text-danger">
                     <strong data-ng-bind="error"></strong>
                 </div>
-                
-                <span class="error" ng-show="lifeTimeForm.surveyStartTime.$error.required || lifeTimeForm.surveyEndTime.$error.required">
-                    Required!</span><br>
 
-             <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
-  <span ng-show="myForm.email.$error.required">Email is required.</span>
-  <span ng-show="myForm.email.$error.email">Invalid email address.</span>
-  </span>
-           
+                <span style="color:red" ng-show="lifeTimeForm.surveyStartTime.$error.required || lifeTimeForm.surveyEndTime.$error.required">
+                    Survey start and end time are required!</span><br>
+
             </fieldset>
         </form>
     </div>
