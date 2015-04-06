@@ -2,16 +2,43 @@
 //angular.module('surveys', ["ui.bootstrap", "ui.bootstrap.datetimepicker"]);
 
 // Surveys controller
-angular.module('surveys').controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys',
-	function($scope, $stateParams, $location, Authentication, Surveys) {
+    angular.module('surveys')
+    .service('surveyNameService', function() {
+      var surveyName;
+
+      var setName = function(name) {
+          this.surveyName = name;
+          //console.log('name: '+this.surveyName );
+      };
+
+      var getName = function(){
+          return this.surveyName;
+      };
+
+      return {
+        setName: setName,
+        getName: getName
+      };
+    })
+    .controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys','surveyNameService',
+	function($scope, $stateParams, $location, Authentication, Surveys,surveyNameService) {
 		$scope.authentication = Authentication;
         
         //save the choosed survey template
-        $scope.radioSurveyTemplate = '';
-        $scope.surveyTemplateName = '';
+        $scope.radioSurveyTemplate;
+        $scope.surveyTemplateName = surveyNameService.getName();
         
+        $scope.setSurveyName = function(name){
+            surveyNameService.setName(name);
+        }
+        
+        $scope.getSurveyName = function(){
+            return surveyNameService.getName();
+        }
+                
         //load different template page
         $scope.createTemplate = function () {
+            $scope.setSurveyName($scope.surveyTemplateName);
             //$scope.surveyTemplateName = this.surveyTemplateName;
             if ($scope.radioSurveyTemplate === 'multiple') {
                 console.log('multiple test pass');
