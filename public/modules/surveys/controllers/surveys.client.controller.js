@@ -14,7 +14,7 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
             //$scope.surveyTemplateName = this.surveyTemplateName;
             if ($scope.radioSurveyTemplate === 'multiple') {
                 console.log('multiple test pass');
-                $location.path('surveys');
+                $location.path('multiple-choice-template');
             } else if ($scope.radioSurveyTemplate === 'agreeDisagree') {
                 console.log('agree/dis test pass');
                 $location.path('surveys');
