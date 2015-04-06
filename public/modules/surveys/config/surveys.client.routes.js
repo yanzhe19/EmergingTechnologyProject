@@ -5,6 +5,10 @@ angular.module('surveys').config(['$stateProvider',
 	function($stateProvider) {
 		// Surveys state routing
 		$stateProvider.
+		state('set-survey-lifetime', {
+			url: '/setsurveylifetime',
+			templateUrl: 'modules/surveys/views/set-survey-lifetime.client.view.html'
+		}).
 		state('choose-template-surveyclientview', {
 			url: '/surveys/choose-survey-template',
 			templateUrl: 'modules/surveys/views/choose-template-survey.client.view.html'

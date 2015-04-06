@@ -13,16 +13,15 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
         $scope.createTemplate = function () {
             //$scope.surveyTemplateName = this.surveyTemplateName;
             if ($scope.radioSurveyTemplate === 'multiple') {
-                console.log("multiple test pass");
+                console.log('multiple test pass');
                 $location.path('surveys');
             } else if ($scope.radioSurveyTemplate === 'agreeDisagree') {
-                console.log("agree/dis test pass");
+                console.log('agree/dis test pass');
                 $location.path('surveys');
             } else if ($scope.radioSurveyTemplate === 'shortAnswer') {
-                console.log("short answer test pass");
+                console.log('short answer test pass');
                 $location.path('surveys');
-            }
-            
+            }            
         };
         
 		// Create new Survey
