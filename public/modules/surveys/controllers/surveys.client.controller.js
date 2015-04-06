@@ -1,4 +1,5 @@
 'use strict';
+//angular.module('surveys', ["ui.bootstrap", "ui.bootstrap.datetimepicker"]);
 
 // Surveys controller
 angular.module('surveys').controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys',
