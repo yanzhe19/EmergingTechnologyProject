@@ -6,10 +6,11 @@ module.exports = {
 		lib: {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.min.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
+				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css'
 			],
 			js: [
 				'public/lib/angular/angular.min.js',
+                'public/lib/jquery/dist/jquery.min.js',
 				'public/lib/angular-resource/angular-resource.js', 
 				'public/lib/angular-cookies/angular-cookies.js', 
 				'public/lib/angular-animate/angular-animate.js', 
