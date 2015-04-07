@@ -9,15 +9,15 @@
 	    
 	    
 	    
-	    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" ng-repeat="question in questionGroup">
-          <div class="panel panel-default">
+	    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" role="tablist">
+          <div class="panel panel-default" ng-repeat="question in questionGroup">
             <div class="panel-heading" role="tab" id={{question.headingID}}>
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href={{question.collapseHref}} aria-expanded="true" aria-controls={{question.collapseID}}>
+                <a data-toggle="collapse" data-parent="#accordion" href={{question.collapseHref}} aria-expanded="false" aria-controls={{question.collapseID}}>
                   <label>Q{{questionGroup.indexOf(question) + 1}}: Multiple Choice</label>                  
                 </a>  
                 <button type="button" class="btn btn-success btn-circle" ng-click="addQuestion($index)"><i class="glyphicon glyphicon-plus"></i></button>  
-                <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>    
+                <button type="button" class="btn btn-warning btn-circle" ng-click="removeQuestion($index)"><i class="glyphicon glyphicon-remove"></i></button>    
                 <input type="text" class="form-control" placeholder="{{question.headingID}} + Enter your question">	             
               </h4>              
             </div>               
@@ -39,186 +39,11 @@
             </div>
           </div>
         </div>
-	    
-	    
-	    
-	    <!--
-	    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="heading2">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapse2">
-                  <label for="question2Name">Q2: Multiple Choice</label>                  
-                </a>  
-                <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>  
-                <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>    
-                <input type="text" class="form-control" id="question2Name" placeholder="Enter your question">	             
-              </h4>              
-            </div>               
-            <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2">
-              <div class="panel-body">
-                <div class="form-group">	   
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="q2Options" id="q2Option1" value="q2Option1" disabled>
-                            <input type="text" class="form-control" id="q2Option1Name" placeholder="Enter ananswer choice">
-                        </label>
-                        <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="q2Options" id="q2Option2" value="q2Option2" disabled>
-                            <input type="text" class="form-control" id="q2Option2Name" placeholder="Enter ananswer choice">
-                        </label>
-                        <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="q2Options" id="q2Option3" value="q2Option3" disabled>
-                            <input type="text" class="form-control" id="q2Option3Name" placeholder="Enter ananswer choice">
-                        </label>
-                        <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="q2Options" id="q2Option4" value="q2Option4" disabled>
-                            <input type="text" class="form-control" id="q2Option4Name" placeholder="Enter ananswer choice">
-                        </label>
-                        <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>	        
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         
-        
-        
-        
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="heading3">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="true" aria-controls="collapse3">
-                  <label for="question3Name">Q3: Multiple Choice</label>                  
-                </a>  
-                <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>     
-                <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button> 
-                <input type="text" class="form-control" id="question3Name" placeholder="Enter your question">	             
-              </h4>              
-            </div>               
-            <div id="collapse3" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading3">
-              <div class="panel-body">
-                <div class="form-group">	   
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="q3Options" id="q3Option1" value="q3Option1" disabled>
-                            <input type="text" class="form-control" id="q3Option1Name" placeholder="Enter ananswer choice">
-                        </label>
-                        <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="q3Options" id="q3Option2" value="q3Option2" disabled>
-                            <input type="text" class="form-control" id="q3Option2Name" placeholder="Enter ananswer choice">
-                        </label>
-                        <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="q3Options" id="q3Option3" value="q3Option3" disabled>
-                            <input type="text" class="form-control" id="q3Option3Name" placeholder="Enter ananswer choice">
-                        </label>
-                        <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="q3Options" id="q3Option4" value="q3Option4" disabled>
-                            <input type="text" class="form-control" id="q3Option4Name" placeholder="Enter ananswer choice">
-                        </label>
-                        <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>	        
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        
-        
-        
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="heading4">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="true" aria-controls="collapse4">
-                  <label for="question4Name">Q4: Multiple Choice</label>                  
-                </a>  
-                <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-                <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>      
-                <input type="text" class="form-control" id="question4Name" placeholder="Enter your question">	             
-              </h4>              
-            </div>               
-            <div id="collapse4" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading4">
-              <div class="panel-body">
-                <div class="form-group">	   
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="q4Options" id="q4Option1" value="q4Option1" disabled>
-                            <input type="text" class="form-control" id="q4Option1Name" placeholder="Enter ananswer choice">
-                        </label>
-                        <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="q4Options" id="q4Option2" value="q4Option2" disabled>
-                            <input type="text" class="form-control" id="q4Option2Name" placeholder="Enter ananswer choice">
-                        </label>
-                        <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="q4Options" id="q4Option3" value="q4Option3" disabled>
-                            <input type="text" class="form-control" id="q4Option3Name" placeholder="Enter ananswer choice">
-                        </label>
-                        <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="q4Options" id="q4Option4" value="q4Option4" disabled>
-                            <input type="text" class="form-control" id="q4Option4Name" placeholder="Enter ananswer choice">
-                        </label>
-                        <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>	        
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        -->
-        
-        
+        <center>
+            <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
+            <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-ok-sign"></i>&nbsp;Save</button>    
+        </center>    
+                                
 	</form>
 </section>

@@ -52,7 +52,7 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
             $scope.questionGroup[questionIdx].radioBtns.splice(radioIdx + 1, 0, {"name": "Q" + (questionIdx + 1)});
         };
         
-        $scope.removeRadio = function (radioIdx, parentIdx) {
+        $scope.removeRadio = function (radioIdx, questionIdx) {
             $scope.questionGroup[questionIdx].radioBtns.splice(radioIdx, 1);
         };
         
@@ -83,6 +83,18 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
         };
         
         $scope.removeQuestion = function (questionIdx) {
+            $scope.questionGroup.splice(questionIdx, 1);
+            
+            for(var m = questionIdx; m < $scope.questionGroup.length; m++)
+            {
+                $scope.questionGroup[m].headingID = "heading" + (m + 1);
+                $scope.questionGroup[m].collapseID = "collapse" + (m + 1);
+                $scope.questionGroup[m].collapseHref = "#collapse" + (m + 1);
+                for(var n = 0; n < $scope.questionGroup[m].radioBtns.length; n++)
+                {
+                    $scope.questionGroup[m].radioBtns[n].name = "Q" + (m + 1);
+                }
+            }
         };
 
         
