@@ -1,5 +1,6 @@
 'use strict';
 // Surveys controller
+<<<<<<< HEAD
     angular.module('surveys')
     .service('surveyNameService', function() {
       var surveyName;
@@ -22,7 +23,104 @@
     })
     .controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys','surveyNameService',
 	function($scope, $stateParams, $location, Authentication, Surveys,surveyNameService) {
+=======
+angular.module('surveys').controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys',
+	function ($scope, $stateParams, $location, Authentication, Surveys) {
+>>>>>>> Zida
 		$scope.authentication = Authentication;
+
+        $scope.questionGroup = [
+            {"headingID": "heading1", 
+             "collapseID": "collapse1", 
+             "collapseHref": "#collapse1",
+             "radioBtns": [
+                            {"name": "Q1"},
+                            {"name": "Q1"},
+                            {"name": "Q1"},
+                            {"name": "Q1"}
+                          ]
+            },
+            {"headingID": "heading2", 
+             "collapseID": "collapse2", 
+             "collapseHref": "#collapse2",
+             "radioBtns": [
+                            {"name": "Q2"},
+                            {"name": "Q2"},
+                            {"name": "Q2"},
+                            {"name": "Q2"}
+                          ]
+            },
+            {"headingID": "heading3", 
+             "collapseID": "collapse3", 
+             "collapseHref": "#collapse3",
+             "radioBtns": [
+                            {"name": "Q3"},
+                            {"name": "Q3"},
+                            {"name": "Q3"},
+                            {"name": "Q3"}
+                          ]
+            },
+            {"headingID": "heading4", 
+             "collapseID": "collapse4", 
+             "collapseHref": "#collapse4",
+             "radioBtns": [
+                            {"name": "Q4"},
+                            {"name": "Q4"},
+                            {"name": "Q4"},
+                            {"name": "Q4"}
+                          ]
+            }
+        ];
+        
+        $scope.addRadio = function (radioIdx, questionIdx) {
+            $scope.questionGroup[questionIdx].radioBtns.splice(radioIdx + 1, 0, {"name": "Q" + (questionIdx + 1)});
+        };
+        
+        $scope.removeRadio = function (radioIdx, questionIdx) {
+            $scope.questionGroup[questionIdx].radioBtns.splice(radioIdx, 1);
+        };
+        
+        $scope.addQuestion = function (questionIdx) {
+            $scope.questionGroup.splice(questionIdx + 1, 0,  {"headingID": "heading" + (questionIdx + 2), 
+                                                              "collapseID": "collapse" + (questionIdx + 2), 
+                                                              "collapseHref": "#collapse" + (questionIdx + 2),
+                                                              "radioBtns": [
+                                                                             {"name": "Q" + (questionIdx + 2)},
+                                                                             {"name": "Q" + (questionIdx + 2)},
+                                                                             {"name": "Q" + (questionIdx + 2)},
+                                                                             {"name": "Q" + (questionIdx + 2)}
+                                                                           ]
+                                                             }
+                                       );
+            
+            for(var i = questionIdx + 1; i < $scope.questionGroup.length; i++)
+            {
+                $scope.questionGroup[i].headingID = "heading" + (i + 1);
+                $scope.questionGroup[i].collapseID = "collapse" + (i + 1);
+                $scope.questionGroup[i].collapseHref = "#collapse" + (i + 1);
+                for(var l = 0; l < $scope.questionGroup[i].radioBtns.length; l++)
+                {
+                    $scope.questionGroup[i].radioBtns[l].name = "Q" + (i + 1);
+                }
+            }
+            
+        };
+        
+        $scope.removeQuestion = function (questionIdx) {
+            $scope.questionGroup.splice(questionIdx, 1);
+            
+            for(var m = questionIdx; m < $scope.questionGroup.length; m++)
+            {
+                $scope.questionGroup[m].headingID = "heading" + (m + 1);
+                $scope.questionGroup[m].collapseID = "collapse" + (m + 1);
+                $scope.questionGroup[m].collapseHref = "#collapse" + (m + 1);
+                for(var n = 0; n < $scope.questionGroup[m].radioBtns.length; n++)
+                {
+                    $scope.questionGroup[m].radioBtns[n].name = "Q" + (m + 1);
+                }
+            }
+        };
+
         
         //save the choosed survey template
         $scope.radioSurveyTemplate;
