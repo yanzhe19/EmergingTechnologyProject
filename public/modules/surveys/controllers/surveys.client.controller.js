@@ -69,8 +69,20 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
                                                              }
                                        );
             
+            for(var i = questionIdx + 1; i < $scope.questionGroup.length; i++)
+            {
+                $scope.questionGroup[i].headingID = "heading" + (i + 1);
+                $scope.questionGroup[i].collapseID = "collapse" + (i + 1);
+                $scope.questionGroup[i].collapseHref = "#collapse" + (i + 1);
+                for(var l = 0; l < $scope.questionGroup[i].radioBtns.length; l++)
+                {
+                    $scope.questionGroup[i].radioBtns[l].name = "Q" + (i + 1);
+                }
+            }
             
-            
+        };
+        
+        $scope.removeQuestion = function (questionIdx) {
         };
 
         
