@@ -27,44 +27,48 @@
         $scope.questionGroup = [
             {
              "questionID": "1",
+             "questionTxt": "",
              "radioBtns": [
-                            {"name": "Q1"},
-                            {"name": "Q1"},
-                            {"name": "Q1"},
-                            {"name": "Q1"}
+                            {"name": "Q1", "answerTxt": ""},
+                            {"name": "Q1", "answerTxt": ""},
+                            {"name": "Q1", "answerTxt": ""},
+                            {"name": "Q1", "answerTxt": ""}
                           ]
             },
             {
              "questionID": "2",
+             "questionTxt": "",
              "radioBtns": [
-                            {"name": "Q2"},
-                            {"name": "Q2"},
-                            {"name": "Q2"},
-                            {"name": "Q2"}
+                            {"name": "Q2", "answerTxt": ""},
+                            {"name": "Q2", "answerTxt": ""},
+                            {"name": "Q2", "answerTxt": ""},
+                            {"name": "Q2", "answerTxt": ""}
                           ]
             },
             {
              "questionID": "3",
+             "questionTxt": "",
              "radioBtns": [
-                            {"name": "Q3"},
-                            {"name": "Q3"},
-                            {"name": "Q3"},
-                            {"name": "Q3"}
+                            {"name": "Q3", "answerTxt": ""},
+                            {"name": "Q3", "answerTxt": ""},
+                            {"name": "Q3", "answerTxt": ""},
+                            {"name": "Q3", "answerTxt": ""}
                           ]
             },
             {
              "questionID": "4",
+             "questionTxt": "",
              "radioBtns": [
-                            {"name": "Q4"},
-                            {"name": "Q4"},
-                            {"name": "Q4"},
-                            {"name": "Q4"}
+                            {"name": "Q4", "answerTxt": ""},
+                            {"name": "Q4", "answerTxt": ""},
+                            {"name": "Q4", "answerTxt": ""},
+                            {"name": "Q4", "answerTxt": ""}
                           ]
             }
         ];
         
         $scope.addRadio = function (radioIdx, questionIdx) {
-            $scope.questionGroup[questionIdx].radioBtns.splice(radioIdx + 1, 0, {"name": "Q" + (questionIdx + 1)});
+            $scope.questionGroup[questionIdx].radioBtns.splice(radioIdx + 1, 0, {"name": "Q" + (questionIdx + 1), "answerTxt": ""});
         };
         
         $scope.removeRadio = function (radioIdx, questionIdx) {
@@ -73,6 +77,7 @@
         
         $scope.addQuestion = function (questionIdx) {
             $scope.questionGroup.splice(questionIdx + 1, 0,  {"questionID": (questionIdx + 2), 
+                                                              "questionTxt": "",
                                                               "radioBtns": [
                                                                              {"name": "Q" + (questionIdx + 2)},
                                                                              {"name": "Q" + (questionIdx + 2)},
