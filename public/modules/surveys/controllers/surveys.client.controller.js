@@ -1,11 +1,10 @@
 'use strict';
     var surveyApp = angular.module('surveys');
-
     //+++++++++++++++++++++++Name service++++++++++++++++++++++++
     surveyApp.factory('surveyNameService', function() {
-      var surveyName;
-
-        //surveyName setter
+      var surveyName ;
+        
+      //surveyName setter
       var setName = function(name) {
           this.surveyName = name;
           //console.log('name: '+this.surveyName );
@@ -22,9 +21,9 @@
       };
     });
 
-    //survey questions service
+    //+++++++++++++++++++++survey questions service++++++++++++++++++++
     surveyApp.factory('questionsService', [function() {
-      var questionsObj;
+        var questionsObj;
         
         //questionsObj setter
       var setQuestionsObj = function(inputObj) {
@@ -139,20 +138,10 @@
                 console.log('fail' + $scope.timeError);
             }
         };
-        
-        //set the survey name in survey name service;
-        $scope.setSurveyName = function(name){
-            surveyNameService.setName(name);
-        };
-        
-        //get the survey name from survey name service
-        $scope.getSurveyName = function(){
-            return surveyNameService.getName();
-        };
-                
+           
         //load different template page
         $scope.createTemplate = function () {
-            $scope.setSurveyName($scope.surveyTemplateName);
+            surveyNameService.setName($scope.surveyTemplateName);
             //$scope.surveyTemplateName = this.surveyTemplateName;
             if ($scope.radioSurveyTemplate === 'multiple') {
                 console.log('multiple test pass');
@@ -168,6 +157,8 @@
         
         $scope.goToSetSurveyTime = function() {
             questionsService.setQuestionsObj($scope.questionGroup);
+            //set or update the survey name
+            surveyNameService.setName($scope.surveyTemplateName);
             $location.path('setsurveylifetime');        
         }
         
@@ -177,9 +168,15 @@
         
 		// Create new Survey
 		$scope.create = function() {
+            var insertedName = surveyNameService.getName();
+            console.log(this.insertedName);
+            var insertedQuestions =  questionsService.getQuestionsObj();
 			// Create new Survey object
 			var survey = new Surveys ({
-				name: this.name
+				name: insertedName,
+                startTime: $scope.surveyStartTime,
+                endTime: $scope.surveyEndTime,
+                questions: insertedQuestions
 			});
 
 			// Redirect after save
