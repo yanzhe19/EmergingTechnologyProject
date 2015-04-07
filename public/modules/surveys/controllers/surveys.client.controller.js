@@ -6,11 +6,13 @@
     .service('surveyNameService', function() {
       var surveyName;
 
+        //surveyName setter
       var setName = function(name) {
           this.surveyName = name;
           //console.log('name: '+this.surveyName );
       };
 
+        //surveyName getter
       var getName = function(){
           return this.surveyName;
       };
@@ -28,10 +30,33 @@
         $scope.radioSurveyTemplate;
         $scope.surveyTemplateName = surveyNameService.getName();
         
+        //model for the survey time
+        $scope.surveyStartTime;
+        $scope.surveyEndTime;
+        
+        //function to validate the survey start and end tiem        
+        $scope.validateTime = function(){
+            console.log("start time: "+$scope.surveyStartTime);
+            console.log("start time: "+$scope.surveyEndTime);
+            
+            if($scope.surveyEndTime > $scope.surveyStartTime){
+                //time ok, create survey
+                $scope.timeCheckPass = true;
+                $scope.timeError= null;
+                console.log("success" + $scope.timeError);
+            }else if($scope.surveyEndTime <= $scope.surveyStartTime){
+                //end time must after start time
+                $scope.timeError = "The Survey end time must after start time!";
+                console.log("fail" + $scope.timeError);
+            }
+        };
+        
+        //set the survey name in survey name service;
         $scope.setSurveyName = function(name){
             surveyNameService.setName(name);
         }
         
+        //get the survey name from survey name service
         $scope.getSurveyName = function(){
             return surveyNameService.getName();
         }
