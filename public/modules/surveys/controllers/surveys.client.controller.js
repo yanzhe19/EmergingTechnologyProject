@@ -1,7 +1,8 @@
 'use strict';
-// Surveys controller
-    angular.module('surveys')
-    .service('surveyNameService', function() {
+    var surveyApp = angular.module('surveys');
+
+    //+++++++++++++++++++++++Name service++++++++++++++++++++++++
+    surveyApp.factory('surveyNameService', function() {
       var surveyName;
 
         //surveyName setter
@@ -19,11 +20,37 @@
         setName: setName,
         getName: getName
       };
-    })
-    .controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys','surveyNameService',
-	function($scope, $stateParams, $location, Authentication, Surveys,surveyNameService) {
+    });
+
+    //survey questions service
+    surveyApp.factory('questionsService', [function() {
+      var questionsObj;
+        
+        //questionsObj setter
+      var setQuestionsObj = function(inputObj) {
+          this.questionsObj = inputObj;
+          //console.log('name: '+this.surveyName );
+      };
+
+        //questionsObj getter
+      var getQuestionsObj = function(){
+          return this.questionsObj;
+      };
+
+      return {
+        setQuestionsObj: setQuestionsObj,
+        getQuestionsObj: getQuestionsObj
+      };
+    }]);
+
+    //+++++++++++++++++++++SurveysController+++++++++++++++++++++
+    surveyApp.controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys','surveyNameService','questionsService',
+	function($scope, $stateParams, $location, Authentication, Surveys,surveyNameService,questionsService) {
 		$scope.authentication = Authentication;
 
+        //this is the list of all surveys in database
+        //$scope.surveys = Surveys.query();
+        //list of all quesions in this survey
         $scope.questionGroup = [
             {
              "questionTxt": "",
@@ -137,6 +164,22 @@
                 console.log('short answer test pass');
                 $location.path('surveys');
             }            
+        };
+        
+        //create survey questions
+        $scope.createQuestions = function () {
+//            $scope.setSurveyName($scope.surveyTemplateName);
+//            //$scope.surveyTemplateName = this.surveyTemplateName;
+//            if ($scope.radioSurveyTemplate === 'multiple') {
+//                console.log('multiple test pass');
+//                $location.path('multiple-choice-template');
+//            } else if ($scope.radioSurveyTemplate === 'agreeDisagree') {
+//                console.log('agree/dis test pass');
+//                $location.path('surveys');
+//            } else if ($scope.radioSurveyTemplate === 'shortAnswer') {
+//                console.log('short answer test pass');
+//                $location.path('surveys');
+//            }            
         };
         
 		// Create new Survey
