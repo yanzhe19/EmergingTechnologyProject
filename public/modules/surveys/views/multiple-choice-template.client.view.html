@@ -6,19 +6,10 @@
 	        <label for="surveyTemplateName">Survey Name</label>
 	        <input type="text" class="form-control" id="surveyTemplateName" ng-model="surveyTemplateName" placeholder="Input your survey name">
 	    </div>
-<<<<<<< HEAD
-	   
-	    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="heading1">
-=======
-	    
-	    
-	    
+ 
 	    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" role="tablist">
           <div class="panel panel-default" ng-repeat="question in questionGroup">
             <div class="panel-heading" role="tab" id={{question.headingID}}>
->>>>>>> Zida
               <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href={{question.collapseHref}} aria-expanded="false" aria-controls={{question.collapseID}}>
                   <label>Q{{questionGroup.indexOf(question) + 1}}: Multiple Choice</label>                  

@@ -1,6 +1,5 @@
 'use strict';
 // Surveys controller
-<<<<<<< HEAD
     angular.module('surveys')
     .service('surveyNameService', function() {
       var surveyName;
@@ -23,10 +22,6 @@
     })
     .controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys','surveyNameService',
 	function($scope, $stateParams, $location, Authentication, Surveys,surveyNameService) {
-=======
-angular.module('surveys').controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys',
-	function ($scope, $stateParams, $location, Authentication, Surveys) {
->>>>>>> Zida
 		$scope.authentication = Authentication;
 
         $scope.questionGroup = [
@@ -120,7 +115,6 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
                 }
             }
         };
-
         
         //save the choosed survey template
         $scope.radioSurveyTemplate;

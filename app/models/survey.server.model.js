@@ -16,24 +16,24 @@ var SurveySchema = new Schema({
         required: 'Please fill Survey name',
         trim: true
     },
-    startTime: {
-        type: Date
-    },
-    endTime: {
-        type: Date
-    },
+//    startTime: {
+//        type: Date
+//    },
+//    endTime: {
+//        type: Date
+//    },
     created: {
         type: Date,
         default: Date.now
     },
-    questions: [{
-        questionName: String,
-        options:[
-            {
-            text:String
-            }
-        ]
-    }],
+//    questions: [{
+//        questionName: String,
+//        options:[
+//            {
+//            text:String
+//            }
+//        ]
+//    }],
     user: {
         type: Schema.ObjectId,
         ref: 'User'
