@@ -139,9 +139,13 @@
             }            
         };
         
+        $scope.goToSetSurveyTime = function() {
+            $location.path('setsurveylifetime');        
+        }
+        
         $scope.backToCreateSurvey = function(){
             $location.path('surveys/choose-survey-template');
-        }
+        };
         
 		// Create new Survey
 		$scope.create = function() {
