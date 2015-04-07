@@ -26,49 +26,45 @@
 
         $scope.questionGroup = [
             {
-             "questionID": "1",
              "questionTxt": "",
              "radioBtns": [
-                            {"name": "Q1", "answerTxt": ""},
-                            {"name": "Q1", "answerTxt": ""},
-                            {"name": "Q1", "answerTxt": ""},
-                            {"name": "Q1", "answerTxt": ""}
+                            {"answerTxt": ""},
+                            {"answerTxt": ""},
+                            {"answerTxt": ""},
+                            {"answerTxt": ""}
                           ]
             },
             {
-             "questionID": "2",
              "questionTxt": "",
              "radioBtns": [
-                            {"name": "Q2", "answerTxt": ""},
-                            {"name": "Q2", "answerTxt": ""},
-                            {"name": "Q2", "answerTxt": ""},
-                            {"name": "Q2", "answerTxt": ""}
+                            {"answerTxt": ""},
+                            {"answerTxt": ""},
+                            {"answerTxt": ""},
+                            {"answerTxt": ""}
                           ]
             },
             {
-             "questionID": "3",
              "questionTxt": "",
              "radioBtns": [
-                            {"name": "Q3", "answerTxt": ""},
-                            {"name": "Q3", "answerTxt": ""},
-                            {"name": "Q3", "answerTxt": ""},
-                            {"name": "Q3", "answerTxt": ""}
+                            {"answerTxt": ""},
+                            {"answerTxt": ""},
+                            {"answerTxt": ""},
+                            {"answerTxt": ""}
                           ]
             },
             {
-             "questionID": "4",
              "questionTxt": "",
              "radioBtns": [
-                            {"name": "Q4", "answerTxt": ""},
-                            {"name": "Q4", "answerTxt": ""},
-                            {"name": "Q4", "answerTxt": ""},
-                            {"name": "Q4", "answerTxt": ""}
+                            {"answerTxt": ""},
+                            {"answerTxt": ""},
+                            {"answerTxt": ""},
+                            {"answerTxt": ""}
                           ]
             }
         ];
         
         $scope.addRadio = function (radioIdx, questionIdx) {
-            $scope.questionGroup[questionIdx].radioBtns.splice(radioIdx + 1, 0, {"name": "Q" + (questionIdx + 1), "answerTxt": ""});
+            $scope.questionGroup[questionIdx].radioBtns.splice(radioIdx + 1, 0, {"answerTxt": ""});
         };
         
         $scope.removeRadio = function (radioIdx, questionIdx) {
@@ -76,39 +72,20 @@
         };
         
         $scope.addQuestion = function (questionIdx) {
-            $scope.questionGroup.splice(questionIdx + 1, 0,  {"questionID": (questionIdx + 2), 
+            $scope.questionGroup.splice(questionIdx + 1, 0,  { 
                                                               "questionTxt": "",
                                                               "radioBtns": [
-                                                                             {"name": "Q" + (questionIdx + 2)},
-                                                                             {"name": "Q" + (questionIdx + 2)},
-                                                                             {"name": "Q" + (questionIdx + 2)},
-                                                                             {"name": "Q" + (questionIdx + 2)}
+                                                                             {"answerTxt": ""},
+                                                                             {"answerTxt": ""},
+                                                                             {"answerTxt": ""},
+                                                                             {"answerTxt": ""}
                                                                            ]
                                                              }
-                                       );
-            
-            for(var i = questionIdx + 1; i < $scope.questionGroup.length; i++)
-            {
-                $scope.questionGroup[i].questionID = (i + 1);
-                for(var l = 0; l < $scope.questionGroup[i].radioBtns.length; l++)
-                {
-                    $scope.questionGroup[i].radioBtns[l].name = "Q" + (i + 1);
-                }
-            }
-            
+                                       );            
         };
         
         $scope.removeQuestion = function (questionIdx) {
             $scope.questionGroup.splice(questionIdx, 1);
-            
-            for(var m = questionIdx; m < $scope.questionGroup.length; m++)
-            {
-                $scope.questionGroup[m].questionID = (m + 1);
-                for(var n = 0; n < $scope.questionGroup[m].radioBtns.length; n++)
-                {
-                    $scope.questionGroup[m].radioBtns[n].name = "Q" + (m + 1);
-                }
-            }
         };
         
         //save the choosed survey template
