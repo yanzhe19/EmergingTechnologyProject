@@ -166,20 +166,12 @@
             }            
         };
         
-        //create survey questions
-        $scope.createQuestions = function () {
-//            $scope.setSurveyName($scope.surveyTemplateName);
-//            //$scope.surveyTemplateName = this.surveyTemplateName;
-//            if ($scope.radioSurveyTemplate === 'multiple') {
-//                console.log('multiple test pass');
-//                $location.path('multiple-choice-template');
-//            } else if ($scope.radioSurveyTemplate === 'agreeDisagree') {
-//                console.log('agree/dis test pass');
-//                $location.path('surveys');
-//            } else if ($scope.radioSurveyTemplate === 'shortAnswer') {
-//                console.log('short answer test pass');
-//                $location.path('surveys');
-//            }            
+        $scope.goToSetSurveyTime = function() {
+            $location.path('setsurveylifetime');        
+        }
+        
+        $scope.backToCreateSurvey = function(){
+            $location.path('surveys/choose-survey-template');
         };
         
 		// Create new Survey
