@@ -6,9 +6,8 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
 		$scope.authentication = Authentication;
 
         $scope.questionGroup = [
-            {"headingID": "heading1", 
-             "collapseID": "collapse1", 
-             "collapseHref": "#collapse1",
+            {
+             "questionID": "1",
              "radioBtns": [
                             {"name": "Q1"},
                             {"name": "Q1"},
@@ -16,9 +15,8 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
                             {"name": "Q1"}
                           ]
             },
-            {"headingID": "heading2", 
-             "collapseID": "collapse2", 
-             "collapseHref": "#collapse2",
+            {
+             "questionID": "2",
              "radioBtns": [
                             {"name": "Q2"},
                             {"name": "Q2"},
@@ -26,9 +24,8 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
                             {"name": "Q2"}
                           ]
             },
-            {"headingID": "heading3", 
-             "collapseID": "collapse3", 
-             "collapseHref": "#collapse3",
+            {
+             "questionID": "3",
              "radioBtns": [
                             {"name": "Q3"},
                             {"name": "Q3"},
@@ -36,9 +33,8 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
                             {"name": "Q3"}
                           ]
             },
-            {"headingID": "heading4", 
-             "collapseID": "collapse4", 
-             "collapseHref": "#collapse4",
+            {
+             "questionID": "4",
              "radioBtns": [
                             {"name": "Q4"},
                             {"name": "Q4"},
@@ -57,9 +53,7 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
         };
         
         $scope.addQuestion = function (questionIdx) {
-            $scope.questionGroup.splice(questionIdx + 1, 0,  {"headingID": "heading" + (questionIdx + 2), 
-                                                              "collapseID": "collapse" + (questionIdx + 2), 
-                                                              "collapseHref": "#collapse" + (questionIdx + 2),
+            $scope.questionGroup.splice(questionIdx + 1, 0,  {"questionID": (questionIdx + 2), 
                                                               "radioBtns": [
                                                                              {"name": "Q" + (questionIdx + 2)},
                                                                              {"name": "Q" + (questionIdx + 2)},
@@ -71,9 +65,7 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
             
             for(var i = questionIdx + 1; i < $scope.questionGroup.length; i++)
             {
-                $scope.questionGroup[i].headingID = "heading" + (i + 1);
-                $scope.questionGroup[i].collapseID = "collapse" + (i + 1);
-                $scope.questionGroup[i].collapseHref = "#collapse" + (i + 1);
+                $scope.questionGroup[i].questionID = (i + 1);
                 for(var l = 0; l < $scope.questionGroup[i].radioBtns.length; l++)
                 {
                     $scope.questionGroup[i].radioBtns[l].name = "Q" + (i + 1);
@@ -87,9 +79,7 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
             
             for(var m = questionIdx; m < $scope.questionGroup.length; m++)
             {
-                $scope.questionGroup[m].headingID = "heading" + (m + 1);
-                $scope.questionGroup[m].collapseID = "collapse" + (m + 1);
-                $scope.questionGroup[m].collapseHref = "#collapse" + (m + 1);
+                $scope.questionGroup[m].questionID = (m + 1);
                 for(var n = 0; n < $scope.questionGroup[m].radioBtns.length; n++)
                 {
                     $scope.questionGroup[m].radioBtns[n].name = "Q" + (m + 1);

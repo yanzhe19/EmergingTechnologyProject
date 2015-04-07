@@ -11,24 +11,24 @@
 	    
 	    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" role="tablist">
           <div class="panel panel-default" ng-repeat="question in questionGroup">
-            <div class="panel-heading" role="tab" id={{question.headingID}}>
+            <div class="panel-heading" role="tab" id="{{'heading' + question.questionID}}">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href={{question.collapseHref}} aria-expanded="false" aria-controls={{question.collapseID}}>
+                <a data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + question.questionID}}" aria-expanded="false" aria-controls="{{'collapse' + question.questionID}}">
                   <label>Q{{questionGroup.indexOf(question) + 1}}: Multiple Choice</label>                  
                 </a>  
                 <button type="button" class="btn btn-success btn-circle" ng-click="addQuestion($index)"><i class="glyphicon glyphicon-plus"></i></button>  
                 <button type="button" class="btn btn-warning btn-circle" ng-click="removeQuestion($index)"><i class="glyphicon glyphicon-remove"></i></button>    
-                <input type="text" class="form-control" placeholder="{{question.headingID}} + Enter your question">	             
+                <input type="text" class="form-control" placeholder="Enter your question">	             
               </h4>              
             </div>               
-            <div id={{question.collapseID}} class="panel-collapse collapse in" role="tabpanel" aria-labelledby={{question.headingID}}>
+            <div id="{{'collapse' + question.questionID}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{'heading' + question.questionID}}">
               <div class="panel-body">
                 <div class="form-group">                            
                                  
                     <div class="radio" ng-repeat="n in question.radioBtns">
                         <label>
                             <input type="radio" name={{n.name}} id={{question.radioBtns.indexOf(n)}} disabled>
-                            <input type="text" class="form-control" id={{radioBtns.indexOf(n)}} placeholder="{{n.name}} + Enter answer choice">
+                            <input type="text" class="form-control" id={{radioBtns.indexOf(n)}} placeholder="Enter answer choice">
                         </label>
                         <button type="button" class="btn btn-success btn-circle" ng-click="addRadio($index, $parent.$index)"><i class="glyphicon glyphicon-plus"></i></button>
                         <button type="button" class="btn btn-warning btn-circle" ng-click="removeRadio($index, $parent.$index)"><i class="glyphicon glyphicon-remove"></i></button>
