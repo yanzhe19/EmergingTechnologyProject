@@ -1,3 +1,58 @@
 <section data-ng-controller="SurveysController">
-    This is the Set survey lifetime    
+    <!--This is the view to Set survey lifetime -->
+
+    <div class="row col-md-6 col-md-offset-3">
+       <h2>Please set the life time for survey:</h2>
+        <form class="form-horizontal" name="lifeTimeForm" data-ng-submit="submit()" novalidate>
+            <fieldset>
+                <!--set suevey start time-->
+                <div class="form-group">
+                    <div class="dropdown">
+                        <h3>Survey start time</h3>
+                        <a class="dropdown-toggle" id="surveyStartDropDown" role="button" data-toggle="dropdown" data-target="#" href="#">
+                            <div class="input-group"><input type="text" name="surveyStartTime" class="form-control" data-ng-model="surveyStartTime" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <datetimepicker data-ng-model="surveyStartTime" data-datetimepicker-config="{ dropdownSelector: '#surveyEndDropDown' }"/>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--set suevey end time-->
+                <div class="form-group">
+                    <div class="dropdown">
+                        <h3>Survey end time</h3>
+                        <a class="dropdown-toggle" id="surveyEndDropDown" role="button" data-toggle="dropdown" data-target="#" href="#">
+                            <div class="input-group"><input type="text" class="form-control" name="surveyEndTime" data-ng-model="surveyEndTime" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <datetimepicker ng-change="validateTime()" data-ng-model="surveyEndTime" data-datetimepicker-config="{ dropdownSelector: '' }"/>
+                        </ul>
+                    </div>
+                </div>
+
+               <br>
+                <!--submit button, disabled if required field(start time and end time) is empty-->
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default" ng-disabled="lifeTimeForm.$invalid || !timeCheckPass">
+                </div>
+
+               <!--display error message-->
+                <span style="color:red" ng-show="lifeTimeForm.surveyStartTime.$error.required || lifeTimeForm.surveyEndTime.$error.required" ng-hide="lifeTimeForm.$pristine">
+                    Survey start and end time are required!</span><br>
+                    
+                <div data-ng-show="timeError" data-ng-hide="timeCheckPass" class="text-danger">
+                    <strong data-ng-bind="timeError"></strong>
+                </div>
+          <!--used for time test-->
+<!--
+           <span>start: {{surveyStartTime | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>
+           <br>
+           <span>end: {{surveyEndTime | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>
+-->           
+            </fieldset>
+        </form>
+    </div>
 </section>

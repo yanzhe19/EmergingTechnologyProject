@@ -1,14 +1,12 @@
 <section data-ng-controller="SurveysController">
 	<h1>Create your survey</h1>
-	
+	    
 	<form action="">
 	    <div class="form-group">
 	        <label for="surveyTemplateName">Survey Name</label>
-	        <input type="text" class="form-control" id="surveyTemplateName" data-ng-model="surveyTemplateModel" placeholder="Input your survey name">
+	        <input type="text" class="form-control" id="surveyTemplateName" ng-model="surveyTemplateName" placeholder="Input your survey name">
 	    </div>
-	    
-	    
-	    
+ 
 	    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" role="tablist">
           <div class="panel panel-default" ng-repeat="question in questionGroup">
             <div class="panel-heading" role="tab" id="{{'heading' + question.questionID}}">
