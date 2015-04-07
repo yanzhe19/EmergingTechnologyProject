@@ -1,6 +1,4 @@
 'use strict';
-//angular.module('surveys', ["ui.bootstrap", "ui.bootstrap.datetimepicker"]);
-
 // Surveys controller
     angular.module('surveys')
     .service('surveyNameService', function() {
@@ -36,30 +34,30 @@
         
         //function to validate the survey start and end tiem        
         $scope.validateTime = function(){
-            console.log("start time: "+$scope.surveyStartTime);
-            console.log("start time: "+$scope.surveyEndTime);
+            console.log('start time: '+$scope.surveyStartTime);
+            console.log('start time: '+$scope.surveyEndTime);
             
             if($scope.surveyEndTime > $scope.surveyStartTime){
                 //time ok, create survey
                 $scope.timeCheckPass = true;
                 $scope.timeError= null;
-                console.log("success" + $scope.timeError);
+                console.log('success' + $scope.timeError);
             }else if($scope.surveyEndTime <= $scope.surveyStartTime){
                 //end time must after start time
-                $scope.timeError = "The Survey end time must after start time!";
-                console.log("fail" + $scope.timeError);
+                $scope.timeError = 'The Survey end time must after start time!';
+                console.log('fail' + $scope.timeError);
             }
         };
         
         //set the survey name in survey name service;
         $scope.setSurveyName = function(name){
             surveyNameService.setName(name);
-        }
+        };
         
         //get the survey name from survey name service
         $scope.getSurveyName = function(){
             return surveyNameService.getName();
-        }
+        };
                 
         //load different template page
         $scope.createTemplate = function () {
