@@ -23,10 +23,10 @@
               <div class="panel-body">
                 <div class="form-group">                            
                                  
-                    <div class="radio" ng-repeat="n in question.radioBtns">
+                    <div class="radio" ng-repeat="n in question.questionOptions">
                         <label>
-                            <input type="radio" name="{{'questionRadios' + questionGroup.indexOf(question)}}" id={{question.radioBtns.indexOf(n)}} disabled>
-                            <input type="text" class="form-control" placeholder="Enter answer choice" ng-model="n.answerTxt" required ng-trim="false">
+                            <input type="radio" name="{{'questionRadios' + questionGroup.indexOf(question)}}" id={{question.questionOptions.indexOf(n)}} disabled>
+                            <input type="text" class="form-control" placeholder="Enter answer choice" ng-model="n.optionTxt" required ng-trim="false">
                         </label>
                         <button type="button" class="btn btn-success btn-circle" ng-click="addRadio($index, $parent.$index)"><i class="glyphicon glyphicon-plus"></i></button>
                         <button type="button" class="btn btn-warning btn-circle" ng-click="removeRadio($index, $parent.$index)"><i class="glyphicon glyphicon-remove"></i></button>
@@ -48,6 +48,6 @@
             <button type="button" class="btn btn-success" ng-click="backToCreateSurvey()"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
             <button type="button" class="btn btn-success" ng-click="goToSetSurveyTime()"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Next</button>    
         </center>    
-                                
+                               
 	</form>
 </section>

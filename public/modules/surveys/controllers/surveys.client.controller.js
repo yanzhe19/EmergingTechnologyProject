@@ -54,58 +54,58 @@
         $scope.questionGroup = [
             {
              "questionTxt": "",
-             "radioBtns": [
-                            {"answerTxt": ""},
-                            {"answerTxt": ""},
-                            {"answerTxt": ""},
-                            {"answerTxt": ""}
+             "questionOptions": [
+                            {"optionTxt": ""},
+                            {"optionTxt": ""},
+                            {"optionTxt": ""},
+                            {"optionTxt": ""}
                           ]
             },
             {
              "questionTxt": "",
-             "radioBtns": [
-                            {"answerTxt": ""},
-                            {"answerTxt": ""},
-                            {"answerTxt": ""},
-                            {"answerTxt": ""}
+             "questionOptions": [
+                            {"optionTxt": ""},
+                            {"optionTxt": ""},
+                            {"optionTxt": ""},
+                            {"optionTxt": ""}
                           ]
             },
             {
              "questionTxt": "",
-             "radioBtns": [
-                            {"answerTxt": ""},
-                            {"answerTxt": ""},
-                            {"answerTxt": ""},
-                            {"answerTxt": ""}
+             "questionOptions": [
+                            {"optionTxt": ""},
+                            {"optionTxt": ""},
+                            {"optionTxt": ""},
+                            {"optionTxt": ""}
                           ]
             },
             {
              "questionTxt": "",
-             "radioBtns": [
-                            {"answerTxt": ""},
-                            {"answerTxt": ""},
-                            {"answerTxt": ""},
-                            {"answerTxt": ""}
+             "questionOptions": [
+                            {"optionTxt": ""},
+                            {"optionTxt": ""},
+                            {"optionTxt": ""},
+                            {"optionTxt": ""}
                           ]
             }
         ];
         
         $scope.addRadio = function (radioIdx, questionIdx) {
-            $scope.questionGroup[questionIdx].radioBtns.splice(radioIdx + 1, 0, {"answerTxt": ""});
+            $scope.questionGroup[questionIdx].questionOptions.splice(radioIdx + 1, 0, {"optionTxt": ""});
         };
         
         $scope.removeRadio = function (radioIdx, questionIdx) {
-            $scope.questionGroup[questionIdx].radioBtns.splice(radioIdx, 1);
+            $scope.questionGroup[questionIdx].questionOptions.splice(radioIdx, 1);
         };
         
         $scope.addQuestion = function (questionIdx) {
             $scope.questionGroup.splice(questionIdx + 1, 0,  { 
                                                               "questionTxt": "",
-                                                              "radioBtns": [
-                                                                             {"answerTxt": ""},
-                                                                             {"answerTxt": ""},
-                                                                             {"answerTxt": ""},
-                                                                             {"answerTxt": ""}
+                                                              "questionOptions": [
+                                                                             {"optionTxt": ""},
+                                                                             {"optionTxt": ""},
+                                                                             {"optionTxt": ""},
+                                                                             {"optionTxt": ""}
                                                                            ]
                                                              }
                                        );            
@@ -167,6 +167,7 @@
         };
         
         $scope.goToSetSurveyTime = function() {
+            questionsService.setQuestionsObj($scope.questionGroup);
             $location.path('setsurveylifetime');        
         }
         
