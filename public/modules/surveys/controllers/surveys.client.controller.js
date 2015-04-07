@@ -5,40 +5,72 @@ angular.module('surveys').controller('SurveysController', ['$scope', '$statePara
 	function ($scope, $stateParams, $location, Authentication, Surveys) {
 		$scope.authentication = Authentication;
 
-        $scope.radioBtns = [
-            {"name": "Q0"},
-            {"name": "Q1"},
-            {"name": "Q2"},
-            {"name": "Q3"}
+        $scope.questionGroup = [
+            {"headingID": "heading1", 
+             "collapseID": "collapse1", 
+             "collapseHref": "#collapse1",
+             "radioBtns": [
+                            {"name": "Q1"},
+                            {"name": "Q1"},
+                            {"name": "Q1"},
+                            {"name": "Q1"}
+                          ]
+            },
+            {"headingID": "heading2", 
+             "collapseID": "collapse2", 
+             "collapseHref": "#collapse2",
+             "radioBtns": [
+                            {"name": "Q2"},
+                            {"name": "Q2"},
+                            {"name": "Q2"},
+                            {"name": "Q2"}
+                          ]
+            },
+            {"headingID": "heading3", 
+             "collapseID": "collapse3", 
+             "collapseHref": "#collapse3",
+             "radioBtns": [
+                            {"name": "Q3"},
+                            {"name": "Q3"},
+                            {"name": "Q3"},
+                            {"name": "Q3"}
+                          ]
+            },
+            {"headingID": "heading4", 
+             "collapseID": "collapse4", 
+             "collapseHref": "#collapse4",
+             "radioBtns": [
+                            {"name": "Q4"},
+                            {"name": "Q4"},
+                            {"name": "Q4"},
+                            {"name": "Q4"}
+                          ]
+            }
         ];
         
-        $scope.addRadio = function (countIdx) {
+        $scope.addRadio = function (radioIdx, questionIdx) {
+            $scope.questionGroup[questionIdx].radioBtns.splice(radioIdx + 1, 0, {"name": "Q" + (questionIdx + 1)});
+        };
+        
+        $scope.removeRadio = function (radioIdx, parentIdx) {
+            $scope.questionGroup[questionIdx].radioBtns.splice(radioIdx, 1);
+        };
+        
+        $scope.addQuestion = function (questionIdx) {
+            $scope.questionGroup.splice(questionIdx + 1, 0,  {"headingID": "heading" + (questionIdx + 2), 
+                                                              "collapseID": "collapse" + (questionIdx + 2), 
+                                                              "collapseHref": "#collapse" + (questionIdx + 2),
+                                                              "radioBtns": [
+                                                                             {"name": "Q" + (questionIdx + 2)},
+                                                                             {"name": "Q" + (questionIdx + 2)},
+                                                                             {"name": "Q" + (questionIdx + 2)},
+                                                                             {"name": "Q" + (questionIdx + 2)}
+                                                                           ]
+                                                             }
+                                       );
             
-            console.log("inbdex: "+countIdx);
             
-            $scope.radioBtns.splice(countIdx+1, 0, {"name": "QQQ" + (countIdx+1) });
             
-            $scope.radioBtns.forEach(function(n){
-            console.log("radios: "+ $scope.radioBtns.indexOf(n)+", "+n.name);
-            });
-
-//            $scope.radioBtns.push({"id": "Opt" + (index + 1), "name": "Q1", "value": "Opt" + (index + 1), "txtID": "txtOpt" + (index + 1)});
-//            console.log(index);
-//            for (var i = 0; i < $scope.radioBtns.length; i++)
-//            {
-//                if(i > index)
-//                {
-//                    $scope.radioBtns[i] = $scope.radioBtns[i-1];
-//                    $scope.radioBtns[i].id = "Opt" + (i + 1);
-//                    $scope.radioBtns[i].value = "Opt" + (i + 1);
-//                    $scope.radioBtns[i].txtID = "txtOpt" + (i + 1);
-//                    $scope.radioBtns[i].index = (i + 1);
-//                }
-//            }
-//            $scope.radioBtns[index].id = "Opt1" + (index + 1);
-//            $scope.radioBtns[index].value = "Opt1" + (index + 1);
-//            $scope.radioBtns[index].txtID = "Opt1" + (index + 1);
-//            $scope.radioBtns[index].index = (index + 1);
         };
 
         
