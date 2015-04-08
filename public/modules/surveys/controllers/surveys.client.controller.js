@@ -89,12 +89,25 @@
             }
         ];
         
+        $scope.display = false;
+        $scope.addRemoveAddBtn = function(questionIdx){            
+            if($scope.questionGroup[questionIdx].questionOptions.length === 0)
+            {
+               $scope.display = true;
+            }
+            else
+            {
+               $scope.display = false;
+            }
+            return $scope.display;
+        };
+        
         $scope.addRadio = function (radioIdx, questionIdx) {
             $scope.questionGroup[questionIdx].questionOptions.splice(radioIdx + 1, 0, {"optionTxt": ""});
         };
         
         $scope.removeRadio = function (radioIdx, questionIdx) {
-            $scope.questionGroup[questionIdx].questionOptions.splice(radioIdx, 1);
+            $scope.questionGroup[questionIdx].questionOptions.splice(radioIdx, 1);            
         };
         
         $scope.addQuestion = function (questionIdx) {
@@ -113,6 +126,26 @@
         $scope.removeQuestion = function (questionIdx) {
             $scope.questionGroup.splice(questionIdx, 1);
         };
+        
+        $scope.validForm = false;
+        $scope.validateSurveyForm = function(){
+            if($scope.questionGroup.length === 0)
+            {
+                $scope.validForm = false;
+            }
+            else
+            {
+                $scope.validForm = true;
+                for(var k = 0; k < $scope.questionGroup.length; k++)
+                {
+                    if($scope.questionGroup[k].questionOptions.length === 0)
+                    {
+                        $scope.validForm = false;
+                    }
+                }
+            }
+            return $scope.validForm;
+        }
         
         //save the choosed survey template
         $scope.radioSurveyTemplate;
@@ -184,7 +217,8 @@
 				$location.path('surveys/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
+				surveyNameService.setName("");
+                questionsService.setQuestionsObj("");
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

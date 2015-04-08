@@ -1,9 +1,10 @@
 <section data-ng-controller="SurveysController">
-    <!--for test use only-->
-    This is the Choose template surveyclientview
-    <pre>"template choosed: "{{radioSurveyTemplate}},"surveyName: "{{surveyTemplateName}}</pre>
-
-    <form class="form-horizontal col-md-5 col-md-offset-3" name="templateSelectionForm" data-ng-submit="createTemplate()" novalidate>
+   <center>
+    <h1>
+        Get Started with Your Survey!
+    </h1>
+   </center>
+    <form class="form-horizontal col-md-5 col-md-offset-3" name="templateSelectionForm" novalidate>
         <fieldset>
             <!--Show text box to input survey name-->
             <div class="form-group">
@@ -29,11 +30,10 @@
                     </label>
                 </div>
             </div>
-            <br>
 
             <!--submit button, disabled if required field is empty-->
             <div class="form-group">
-                <input type="submit" class="btn btn-default" ng-disabled="templateSelectionForm.$invalid">
+                <button type="button" class="btn btn-success" ng-click="createTemplate()" ng-disabled="templateSelectionForm.$invalid"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Next</button>  
             </div>
 
             <!--show error message-->
