@@ -1,10 +1,11 @@
 'use strict';
 
 // Answersurveys controller
-angular.module('answersurveys').controller('AnswersurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Answersurveys',
-	function($scope, $stateParams, $location, Authentication, Answersurveys) {
-		//$scope.authentication = Authentication;
-
+angular.module('answersurveys').controller('AnswersurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Answersurveys','Surveys',
+	function($scope, $stateParams, $location, Authentication, Answersurveys,Surveys) {
+		$scope.authentication = Authentication;
+        $scope.surveyAnswers = [];
+        
 		// Create new Answersurvey
 		$scope.create = function() {
 			// Create new Answersurvey object
@@ -52,14 +53,28 @@ angular.module('answersurveys').controller('AnswersurveysController', ['$scope',
 		};
 
 		// Find a list of Answersurveys
-		$scope.find = function() {
-			$scope.answersurveys = Answersurveys.query();
-		};
+//		$scope.find = function() {
+//			$scope.answersurveys = Answersurveys.query();
+//		};
 
 		// Find existing Answersurvey
-		$scope.findOne = function() {
-			$scope.answersurvey = Answersurveys.get({ 
-				answersurveyId: $stateParams.answersurveyId
+//		$scope.findOne = function() {
+//			$scope.answersurvey = Answersurveys.get({ 
+//				answersurveyId: $stateParams.answersurveyId
+//			});
+//		};
+        
+        // Find a list of Surveys
+		$scope.findAllSurvey = function() {
+			$scope.surveys = Surveys.query();
+		};
+
+		// Find existing Survey
+		$scope.findOneSurvey = function() {
+            //console.log($stateParams.answersurveyId);
+			$scope.answersurvey = Surveys.get({ 
+                //set the survey Id to answer survey id passed from lisf of answer survey view
+				surveyId: $stateParams.answersurveyId
 			});
 		};
 	}

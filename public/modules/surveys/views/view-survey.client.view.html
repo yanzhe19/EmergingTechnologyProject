@@ -1,21 +1,47 @@
 <section data-ng-controller="SurveysController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="survey.name"></h1>
-	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == survey.user._id))">
-		<a class="btn btn-primary" href="/#!/surveys/{{survey._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="survey.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="survey.user.displayName"></span>
-		</em>
-	</small>
+    <div class="page-header">
+        <form name="questionaryForm">
+            <h1 data-ng-bind="survey.name"></h1>
+
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" role="tablist">
+                <div class="panel panel-default" ng-repeat="question in survey.questions" ng-init="questionGroup=survey.questions">
+                    <div class="panel-heading" role="tab" id="{{'heading' + questionGroup.indexOf(question)}}">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + questionGroup.indexOf(question)}}" aria-expanded="false" aria-controls="{{'collapse' + questionGroup.indexOf(question)}}">
+                                <label>Q{{questionGroup.indexOf(question) + 1}}: {{question.questionTxt}}</label>
+                            </a>         
+                        </h4>              
+                    </div>               
+                    <div id="{{'collapse' + questionGroup.indexOf(question)}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{'heading' + questionGroup.indexOf(question)}}">
+                        <div class="panel-body">
+                            <div class="form-group">                                                   
+                                <div class="radio" ng-repeat="n in question.questionOptions">
+                                    <label>
+                                        <input type="radio" name="{{'questionRadios' + questionGroup.indexOf(question)}}" id={{question.questionOptions.indexOf(n)}} disabled>
+                                        {{n.optionTxt}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == survey.user._id))">
+        <a class="btn btn-primary" href="/#!/surveys/{{survey._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <small>
+        <em class="text-muted">
+            Posted on
+            <span data-ng-bind="survey.created | date:'mediumDate'"></span>
+            by
+            <span data-ng-bind="survey.user.displayName"></span>
+        </em>
+    </small>
 </section>
