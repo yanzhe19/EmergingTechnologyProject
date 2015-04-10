@@ -262,6 +262,8 @@
 			$scope.survey = Surveys.get({ 
 				surveyId: $stateParams.surveyId
 			});
+            
+          //$scope.questionGroup = $scope.survey.questions;
 		};
 	}
 ]);
