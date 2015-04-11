@@ -127,8 +127,8 @@
             $scope.questionGroup.splice(questionIdx, 1);
         };
         
-        $scope.validForm = false;
         $scope.validateSurveyForm = function(){
+            $scope.validForm = false;
             if($scope.questionGroup.length === 0)
             {
                 $scope.validForm = false;
@@ -262,8 +262,63 @@
 			$scope.survey = Surveys.get({ 
 				surveyId: $stateParams.surveyId
 			});
-            
-          //$scope.questionGroup = $scope.survey.questions;
 		};
+        
+        $scope.addQueForUpdate = function(queIdx){
+             $scope.survey.questions.splice(queIdx + 1, 0,  { 
+                                                              "questionTxt": "",
+                                                              "questionOptions": [
+                                                                             {"optionTxt": ""},
+                                                                             {"optionTxt": ""},
+                                                                             {"optionTxt": ""},
+                                                                             {"optionTxt": ""}
+                                                                           ]
+                                                             }
+                                       );   
+        };
+        
+        $scope.removeQueForUpdate = function(queIdx){
+            $scope.survey.questions.splice(queIdx, 1);
+        };
+        
+        $scope.addRadioForUpdate = function (rdoIdx, queIdx) {
+            $scope.survey.questions[queIdx].questionOptions.splice(rdoIdx + 1, 0, {"optionTxt": ""});
+        };
+        
+        $scope.removeRadioForUpdate = function (rdoIdx, queIdx) {
+            $scope.survey.questions[queIdx].questionOptions.splice(rdoIdx, 1);            
+        };
+        
+        $scope.addBtnOnNoRdoForUpdate = function(queIdx){            
+            if($scope.survey.questions[queIdx].questionOptions.length === 0)
+            {
+               $scope.display = true;
+            }
+            else
+            {
+               $scope.display = false;
+            }
+            return $scope.display;
+        };
+        
+        $scope.validateSurveyFormForUpdate = function(){
+            $scope.validForm = false;
+            if($scope.survey.questions.length === 0)
+            {
+                $scope.validForm = false;
+            }
+            else
+            {
+                $scope.validForm = true;
+                for(var k = 0; k < $scope.survey.questions.length; k++)
+                {
+                    if($scope.survey.questions[k].questionOptions.length === 0)
+                    {
+                        $scope.validForm = false;
+                    }
+                }
+            }
+            return $scope.validForm;
+        }
 	}
 ]);
