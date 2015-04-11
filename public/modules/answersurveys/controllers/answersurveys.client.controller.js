@@ -9,16 +9,19 @@ angular.module('answersurveys').controller('AnswersurveysController', ['$scope',
 		// Create new Answersurvey
 		$scope.create = function() {
 			// Create new Answersurvey object
-			var answersurvey = new Answersurveys ({
-				name: this.name
+			var inputAnswer = new Answersurveys ({
+                surveyId: $scope.answersurvey._id,
+				surveyName: $scope.answersurvey.name,
+                surveyAnswers:$scope.surveyAnswers,
+                surveyOwner:$scope.answersurvey.user._id
 			});
 
 			// Redirect after save
-			answersurvey.$save(function(response) {
+			inputAnswer.$save(function(response) {
 				$location.path('answersurveys/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
+				$scope.surveyAnswers = [{"question": "", "answer": ""}];
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

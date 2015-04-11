@@ -13,7 +13,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var answersurvey = new Answersurvey(req.body);
-	answersurvey.user = req.user;
+	//answersurvey.user = req.user;
 
 	answersurvey.save(function(err) {
 		if (err) {
@@ -99,9 +99,9 @@ exports.answersurveyByID = function(req, res, next, id) {
 /**
  * Answersurvey authorization middleware
  */
-exports.hasAuthorization = function(req, res, next) {
-	if (req.answersurvey.user.id !== req.user.id) {
-		return res.status(403).send('User is not authorized');
-	}
-	next();
-};
+//exports.hasAuthorization = function(req, res, next) {
+//	if (req.answersurvey.user.id !== req.user.id) {
+//		return res.status(403).send('User is not authorized');
+//	}
+//	next();
+//};

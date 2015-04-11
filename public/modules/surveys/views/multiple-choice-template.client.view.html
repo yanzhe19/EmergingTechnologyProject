@@ -1,55 +1,54 @@
 <section data-ng-controller="SurveysController">
-	<h1>Create your survey</h1>
-	    
-	<form name="questionaryForm">
-	    <div class="form-group">
-	        <label for="surveyTemplateName">Survey Name</label>
-	        <input type="text" class="form-control" id="surveyTemplateName" ng-model="surveyTemplateName" placeholder="Input your survey name" required>
-	    </div>
- 
-	    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" role="tablist">
-          <div class="panel panel-default" ng-repeat="question in questionGroup">
-            <div class="panel-heading" role="tab" id="{{'heading' + questionGroup.indexOf(question)}}">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + questionGroup.indexOf(question)}}" aria-expanded="false" aria-controls="{{'collapse' + questionGroup.indexOf(question)}}">
-                  <label>Q{{questionGroup.indexOf(question) + 1}}: Multiple Choice</label>                  
-                </a>  
-                <button type="button" class="btn btn-success btn-circle" ng-click="addQuestion($index)"><i class="glyphicon glyphicon-plus"></i></button>  
-                <button type="button" class="btn btn-warning btn-circle" ng-click="removeQuestion($index)"><i class="glyphicon glyphicon-remove"></i></button>    
-                <input type="text" class="form-control" placeholder="Enter your question" ng-model="question.questionTxt" required ng-trim="false">	          
-              </h4>              
-            </div>               
-            <div id="{{'collapse' + questionGroup.indexOf(question)}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{'heading' + questionGroup.indexOf(question)}}">
-              <div class="panel-body">
-                <div class="form-group"> 
-                                
-                    <button type="button" class="btn btn-success btn-circle" ng-click="addRadio(0, $index)" ng-show="addRemoveAddBtn($index)"><i class="glyphicon glyphicon-plus"></i></button>                                                                   
-                                 
-                    <div class="radio" ng-repeat="n in question.questionOptions">
-                        <label>
-                            <input type="radio" name="{{'questionRadios' + questionGroup.indexOf(question)}}" id={{question.questionOptions.indexOf(n)}} disabled>
-                            <input type="text" class="form-control" placeholder="Enter answer choice" ng-model="n.optionTxt" required ng-trim="false">
-                        </label>
-                        <button type="button" class="btn btn-success btn-circle" ng-click="addRadio($index, $parent.$index)"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle" ng-click="removeRadio($index, $parent.$index)"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-                       
-                </div>
-              </div>
-            </div>
-          </div>
+    <h1>Create your survey</h1>
+
+    <form name="questionaryForm">
+        <div class="form-group">
+            <label for="surveyTemplateName">Survey Name</label>
+            <input type="text" class="form-control" id="surveyTemplateName" ng-model="surveyTemplateName" placeholder="Input your survey name" required>
         </div>
-        
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" role="tablist">
+            <div class="panel panel-default" ng-repeat="question in questionGroup">
+                <div class="panel-heading" role="tab" id="{{'heading' + questionGroup.indexOf(question)}}">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + questionGroup.indexOf(question)}}" aria-expanded="false" aria-controls="{{'collapse' + questionGroup.indexOf(question)}}">
+                            <label>Q{{questionGroup.indexOf(question) + 1}}: Multiple Choice</label>                  
+                        </a>  
+                        <button type="button" class="btn btn-success btn-circle" ng-click="addQuestion($index)"><i class="glyphicon glyphicon-plus"></i></button>  
+                        <button type="button" class="btn btn-warning btn-circle" ng-click="removeQuestion($index)"><i class="glyphicon glyphicon-remove"></i></button>    
+                        <input type="text" class="form-control" placeholder="Enter your question" ng-model="question.questionTxt" required ng-trim="false">	          
+                    </h4>              
+                </div>               
+                <div id="{{'collapse' + questionGroup.indexOf(question)}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{'heading' + questionGroup.indexOf(question)}}">
+                    <div class="panel-body">
+                        <div class="form-group"> 
+
+                            <button type="button" class="btn btn-success btn-circle" ng-click="addRadio(0, $index)" ng-show="addRemoveAddBtn($index)"><i class="glyphicon glyphicon-plus"></i></button>                         
+                            <div class="radio" ng-repeat="n in question.questionOptions">
+                                <label>
+                                    <input type="radio" name="{{'questionRadios' + questionGroup.indexOf(question)}}" id={{question.questionOptions.indexOf(n)}} disabled>
+                                    <input type="text" class="form-control" placeholder="Enter answer choice" ng-model="n.optionTxt" required ng-trim="false">
+                                </label>
+                                <button type="button" class="btn btn-success btn-circle" ng-click="addRadio($index, $parent.$index)"><i class="glyphicon glyphicon-plus"></i></button>
+                                <button type="button" class="btn btn-warning btn-circle" ng-click="removeRadio($index, $parent.$index)"><i class="glyphicon glyphicon-remove"></i></button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <center>
             <button type="button" class="btn btn-success btn-circle" ng-click="addQuestion(questionGroup.length)"><i class="glyphicon glyphicon-plus"></i></button>  
         </center>
-        
+
         <br>
-        
+
         <center>
             <button type="button" class="btn btn-success" ng-click="backToCreateSurvey()"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
             <button type="button" class="btn btn-success" ng-click="goToSetSurveyTime()" ng-disabled="questionaryForm.$invalid || !validateSurveyForm()"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Next</button>    
         </center>    
-                               
-	</form>
+
+    </form>
 </section>
