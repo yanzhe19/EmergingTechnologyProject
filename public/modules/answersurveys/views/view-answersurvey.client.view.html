@@ -17,7 +17,7 @@
                             <div class="form-group">                                                   
                                 <div class="radio" ng-repeat="n in question.questionOptions">
                                     <label>
-                                        <input type="radio" name="{{'questionRadios' + questionGroup.indexOf(question)}}" ng-model="{{'questionRadios' + questionGroup.indexOf(question)}}" value={{n.optionTxt}} id={{question.questionOptions.indexOf(n)}}>
+                                        <input type="radio" name="{{'questionRadios' + questionGroup.indexOf(question)}}" ng-model="surveyAnswers[questionGroup.indexOf(question)].answer" value={{n.optionTxt}} id={{question.questionOptions.indexOf(n)}}>
                                         {{n.optionTxt}}
                                     </label>
                                 </div>

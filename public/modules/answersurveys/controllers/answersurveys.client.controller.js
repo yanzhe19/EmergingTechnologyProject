@@ -4,7 +4,7 @@
 angular.module('answersurveys').controller('AnswersurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Answersurveys','Surveys',
 	function($scope, $stateParams, $location, Authentication, Answersurveys,Surveys) {
 		$scope.authentication = Authentication;
-        $scope.surveyAnswers = [];
+        $scope.surveyAnswers = [{"question": "", "answer": ""}];
         
 		// Create new Answersurvey
 		$scope.create = function() {
