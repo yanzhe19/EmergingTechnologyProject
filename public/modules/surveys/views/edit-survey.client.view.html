@@ -1,19 +1,40 @@
 <section data-ng-controller="SurveysController" data-ng-init="findOne()">
-    <div class="page-header">
         <h1>Edit Survey</h1>
-    </div>
-    <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="update()" novalidate>
-            <fieldset>
+        <form name="questionaryForm">
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="survey.name" id="name" class="form-control" placeholder="Name" required>
+                    <label class="control-label" for="name">Survey Name</label>
+                    <input type="text" data-ng-model="survey.name" id="name" class="form-control" placeholder="Name" required>
+                </div>
+                 
+                 
+                <!--set suevey start time-->
+                <div class="form-group">
+                    <div class="dropdown">
+                        <label>Survey start time</label>
+                        <a class="dropdown-toggle" id="surveyStartDropDown" role="button" data-toggle="dropdown" data-target="#" href="#">
+                            <div class="input-group"><input type="text" name="surveyStartTime" class="form-control" data-ng-model="survey.startTime"  required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <datetimepicker data-ng-model="survey.startTime" data-datetimepicker-config="{ dropdownSelector: '#surveyEndDropDown' }"/>
+                        </ul>
                     </div>
                 </div>
-                
-                
-                
+
+                <!--set suevey end time-->
+                <div class="form-group">
+                    <div class="dropdown">
+                        <label>Survey end time</label>
+                        <a class="dropdown-toggle" id="surveyEndDropDown" role="button" data-toggle="dropdown" data-target="#" href="#">
+                            <div class="input-group"><input type="text" class="form-control" name="surveyEndTime" data-ng-model="survey.endTime" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <datetimepicker ng-change="validateTimeForUpdate()" data-ng-model="survey.endTime" />
+                        </ul>
+                    </div>
+                </div>
+
                 
                 
                 
@@ -26,8 +47,8 @@
                         <a data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + survey.questions.indexOf(question)}}" aria-expanded="false" aria-controls="{{'collapse' + survey.questions.indexOf(question)}}">
                           <label>Q{{survey.questions.indexOf(question) + 1}}: Multiple Choice</label>                  
                         </a>  
-                        <button type="button" class="btn btn-success btn-circle" ng-click="addQuestion($index)"><i class="glyphicon glyphicon-plus"></i></button>  
-                        <button type="button" class="btn btn-warning btn-circle" ng-click="removeQuestion($index)"><i class="glyphicon glyphicon-remove"></i></button>    
+                        <button type="button" class="btn btn-success btn-circle" ng-click="addQueForUpdate($index)"><i class="glyphicon glyphicon-plus"></i></button>  
+                        <button type="button" class="btn btn-warning btn-circle" ng-click="removeQueForUpdate($index)"><i class="glyphicon glyphicon-remove"></i></button>    
                         <input type="text" class="form-control" placeholder="Enter your question" ng-model="question.questionTxt" required ng-trim="false">	          
                       </h4>              
                     </div>               
@@ -35,15 +56,15 @@
                       <div class="panel-body">
                         <div class="form-group"> 
 
-                            <button type="button" class="btn btn-success btn-circle" ng-click="addRadio(0, $index)" ng-show="addRemoveAddBtn($index)"><i class="glyphicon glyphicon-plus"></i></button>                                                                   
+                            <button type="button" class="btn btn-success btn-circle" ng-click="addRadioForUpdate(0, $index)" ng-show="addBtnOnNoRdoForUpdate($index)"><i class="glyphicon glyphicon-plus"></i></button>                                                                   
 
                             <div class="radio" ng-repeat="n in question.questionOptions">
                                 <label>
                                     <input type="radio" name="{{'questionRadios' + survey.questions.indexOf(question)}}" id={{question.questionOptions.indexOf(n)}} disabled>
                                     <input type="text" class="form-control" placeholder="Enter answer choice" ng-model="n.optionTxt" required ng-trim="false">
                                 </label>
-                                <button type="button" class="btn btn-success btn-circle" ng-click="addRadio($index, $parent.$index)"><i class="glyphicon glyphicon-plus"></i></button>
-                                <button type="button" class="btn btn-warning btn-circle" ng-click="removeRadio($index, $parent.$index)"><i class="glyphicon glyphicon-remove"></i></button>
+                                <button type="button" class="btn btn-success btn-circle" ng-click="addRadioForUpdate($index, $parent.$index)"><i class="glyphicon glyphicon-plus"></i></button>
+                                <button type="button" class="btn btn-warning btn-circle" ng-click="removeRadioForUpdate($index, $parent.$index)"><i class="glyphicon glyphicon-remove"></i></button>
                             </div>
 
                         </div>
@@ -53,24 +74,18 @@
                 </div>
 
                 <center>
-                    <button type="button" class="btn btn-success btn-circle" ng-click="addQuestion(questionGroup.length)"><i class="glyphicon glyphicon-plus"></i></button>  
+                    <button type="button" class="btn btn-success btn-circle" ng-click="addQueForUpdate(survey.questions.length)"><i class="glyphicon glyphicon-plus"></i></button>  
                 </center>
                 
-                
-                
-                
-                
-                
-                
-                
-                
-                <div class="form-group">             
-                    <input type="submit" value="Update" class="btn btn-default">
-                </div>
+                <br>
+               
+                <center>
+                    <button type="button" class="btn btn-danger" ng-click="backToSurveyList()"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
+                    <button type="button" class="btn btn-success" ng-click="update()" ng-disabled="questionaryForm.$invalid || !validateSurveyFormForUpdate() || !validateTimeForUpdate()"><i class="glyphicon glyphicon-ok"></i>&nbsp;Update</button>    
+                </center> 
+
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>
 				</div>
-            </fieldset>
         </form>
-    </div>
 </section>
