@@ -5,7 +5,41 @@
                     <label class="control-label" for="name">Survey Name</label>
                     <input type="text" data-ng-model="survey.name" id="name" class="form-control" placeholder="Name" required>
                 </div>
+                 
+                 
+                <!--set suevey start time-->
+                <div class="form-group">
+                    <div class="dropdown">
+                        <label>Survey start time</label>
+                        <a class="dropdown-toggle" id="surveyStartDropDown" role="button" data-toggle="dropdown" data-target="#" href="#">
+                            <div class="input-group"><input type="text" name="surveyStartTime" class="form-control" data-ng-model="survey.startTime"  required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <datetimepicker data-ng-model="survey.startTime" data-datetimepicker-config="{ dropdownSelector: '#surveyEndDropDown' }"/>
+                        </ul>
+                    </div>
+                </div>
 
+                <!--set suevey end time-->
+                <div class="form-group">
+                    <div class="dropdown">
+                        <label>Survey end time</label>
+                        <a class="dropdown-toggle" id="surveyEndDropDown" role="button" data-toggle="dropdown" data-target="#" href="#">
+                            <div class="input-group"><input type="text" class="form-control" name="surveyEndTime" data-ng-model="survey.endTime" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <datetimepicker ng-change="validateTimeForUpdate()" data-ng-model="survey.endTime" />
+                        </ul>
+                    </div>
+                </div>
+
+                
+                
+                
+                
+                
                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" role="tablist" data-ng-model="survey.questions">
                   <div class="panel panel-default" ng-repeat="question in survey.questions">
                     <div class="panel-heading" role="tab" id="{{'heading' + survey.questions.indexOf(question)}}">
@@ -44,10 +78,10 @@
                 </center>
                 
                 <br>
-                
+               
                 <center>
-                    <button type="button" class="btn btn-danger" ng-click="backToCreateSurvey()"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
-                    <button type="button" class="btn btn-success" ng-click="update()" ng-disabled="questionaryForm.$invalid || !validateSurveyFormForUpdate()"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Update</button>    
+                    <button type="button" class="btn btn-danger" ng-click="backToSurveyList()"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
+                    <button type="button" class="btn btn-success" ng-click="update()" ng-disabled="questionaryForm.$invalid || !validateSurveyFormForUpdate() || !validateTimeForUpdate()"><i class="glyphicon glyphicon-ok"></i>&nbsp;Update</button>    
                 </center> 
 
 				<div data-ng-show="error" class="text-danger">

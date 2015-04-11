@@ -319,6 +319,22 @@
                 }
             }
             return $scope.validForm;
-        }
+        };
+        
+        //function to validate the survey start and end time for update form        
+        $scope.validateTimeForUpdate = function(){
+            if($scope.survey.endTime > $scope.survey.startTime){
+                //time ok, create survey
+                $scope.timeCheckPass = true;
+            }else if($scope.survey.endTime <= $scope.survey.startTime){
+                //end time must after start time
+                $scope.timeCheckPass = false;
+            }
+            return $scope.timeCheckPass;
+        };
+        
+        $scope.backToSurveyList = function(){
+            $location.path('surveys');
+        };
 	}
 ]);
