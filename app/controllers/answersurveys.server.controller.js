@@ -88,7 +88,22 @@ exports.list = function(req, res) {
 
 
 /**
- * Answersurvey middleware 
+ * get all answers for specific survey
+ */
+exports.answerListBySurveyID = function(req, res, id) { 
+    Answersurvey.find({ surveyId:mongoose.Types.ObjectId.createFromHexString(id) }).populate('user', 'displayName').exec(function(err, answersurvey) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(answersurvey);
+        }
+    });
+};
+
+/**
+ * Answersurvey middleware
  */
 exports.answersurveyByID = function(req, res, next, id) { 
     Answersurvey.findById(id).populate('user', 'displayName').exec(function(err, answersurvey) {
@@ -98,13 +113,3 @@ exports.answersurveyByID = function(req, res, next, id) {
         next();
     });
 };
-
-/**
- * Disabled authentication requirements for answering survey, Answersurvey authorization middleware
- */
-//exports.hasAuthorization = function(req, res, next) {
-//	if (req.answersurvey.user.id !== req.user.id) {
-//		return res.status(403).send('User is not authorized');
-//	}
-//	next();
-//};
