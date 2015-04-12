@@ -42,9 +42,65 @@
       };
     }]);
 
+    //+++++++++++++++++++++survey statistics service++++++++++++++++++++
+    surveyApp.factory('surveqyStatisService', ['$resource', function($resource) {
+        var allAnswers;
+        var fullID;
+        
+        var Answers = $resource('/answersurveys/:surveyId');
+        var findAllAnswer = function(inputSurveyId){
+//            var ObjectId = require('mongoose').Types.ObjectId; 
+//            this.fullID = new ObjectId(inputSurveyId);
+            this.allAnswers = Answers.query({ 
+                    surveyId: inputSurveyId
+                }); 
+        };       
+//        
+//        angular.module('answersurveys').factory('Answersurveys', ['$resource',
+//	function($resource) {
+//		return $resource('answersurveys/:answersurveyId', { answersurveyId: '@_id'
+//		}, {
+//			update: {
+//				method: 'PUT'
+//			}
+//		});
+//	}
+//]);
+//        
+//        
+//       // get all Answersurvey by one survey id
+//		var findAllAnswer = function(inputSurveyId) {
+//			this.allAnswers = Answersurveys.query({ 
+//				surveyId: inputSurveyId
+//			});
+//		};
+        
+//        $scope.survey = Surveys.get({ 
+//				surveyId: $stateParams.surveyId
+//			});
+        
+        //var lengtha = this.allAnswers;
+//        //questionsObj setter
+//      var setQuestionsObj = function(inputObj) {
+//          this.questionsObj = inputObj;
+//          //console.log('name: '+this.surveyName );
+//      };
+//
+//        //questionsObj getter
+//      var getQuestionsObj = function(){
+//          return this.questionsObj;
+//      };
+
+      return {
+//        setQuestionsObj: setQuestionsObj,
+//        getQuestionsObj: getQuestionsObj
+          findAllAnswer:findAllAnswer
+      };
+    }]);
+
     //+++++++++++++++++++++SurveysController+++++++++++++++++++++
-    surveyApp.controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys','surveyNameService','questionsService',
-	function($scope, $stateParams, $location, Authentication, Surveys,surveyNameService,questionsService) {
+    surveyApp.controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys', 'Answersurveys', 'surveyNameService','questionsService','surveqyStatisService',
+	function($scope, $stateParams, $location, Authentication, Surveys,Answersurveys,surveyNameService,questionsService,surveqyStatisService) {
 		$scope.authentication = Authentication;
 
         //this is the list of all surveys in database
@@ -256,19 +312,13 @@
 		$scope.find = function() {
 			$scope.surveys = Surveys.query();
 		};
-
-        // Find existing Survey
-		$scope.findSurveyByUserID = function() {
-			$scope.surveys = Surveys.get({ 
-				userId: $stateParams.surveyId
-			});
-		};
         
 		// Find existing Survey
 		$scope.findOne = function() {
 			$scope.survey = Surveys.get({ 
 				surveyId: $stateParams.surveyId
 			});
+            surveqyStatisService.findAllAnswer($stateParams.surveyId);
 		};
         
         $scope.addQueForUpdate = function(queIdx){
