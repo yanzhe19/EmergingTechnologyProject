@@ -91,7 +91,7 @@ exports.list = function(req, res) {
  * get all answers for specific survey
  */
 exports.answerListBySurveyID = function(req, res, id) { 
-    Answersurvey.find({ surveyId:mongoose.Types.ObjectId.createFromHexString(id) }).populate('user', 'displayName').exec(function(err, answersurvey) {
+    Answersurvey.find({ surveyId:mongoose.Types.ObjectId('552ab50a22b2861412a649d5') }).populate('user', 'displayName').exec(function(err, answersurvey) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)

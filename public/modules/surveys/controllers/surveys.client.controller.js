@@ -48,13 +48,14 @@
         var fullID;
         
         var Answers = $resource('/answersurveys/:surveyId');
+        
         var findAllAnswer = function(inputSurveyId){
 //            var ObjectId = require('mongoose').Types.ObjectId; 
 //            this.fullID = new ObjectId(inputSurveyId);
             this.allAnswers = Answers.query({ 
                     surveyId: inputSurveyId
                 }); 
-        };       
+        }; 
 //        
 //        angular.module('answersurveys').factory('Answersurveys', ['$resource',
 //	function($resource) {
@@ -87,13 +88,13 @@
 //      };
 //
 //        //questionsObj getter
-//      var getQuestionsObj = function(){
-//          return this.questionsObj;
-//      };
+      var getAllAnswer = function(){
+          return this.allAnswers;
+      };
 
       return {
 //        setQuestionsObj: setQuestionsObj,
-//        getQuestionsObj: getQuestionsObj
+          getAllAnswer: getAllAnswer,
           findAllAnswer:findAllAnswer
       };
     }]);
@@ -319,6 +320,7 @@
 				surveyId: $stateParams.surveyId
 			});
             surveqyStatisService.findAllAnswer($stateParams.surveyId);
+            $scope.answers = surveqyStatisService.getAllAnswer();
 		};
         
         $scope.addQueForUpdate = function(queIdx){
