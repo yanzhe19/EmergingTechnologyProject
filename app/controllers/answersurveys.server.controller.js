@@ -73,8 +73,9 @@ exports.delete = function(req, res) {
 /**
  * get survey list, so add survey model to this controller(at the begining of file) and involke function to get all survey listed.
  */
+var currentDateTime = new Date();
 exports.list = function(req, res) { 
-    Survey.find().sort('-created').populate('user', 'displayName').exec(function(err, surveys) {
+    Survey.find().where('endTime').gt(currentDateTime).sort('-created').populate('user', 'displayName').exec(function(err, surveys) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -84,6 +85,7 @@ exports.list = function(req, res) {
         }
     });
 };
+
 
 /**
  * Answersurvey middleware
