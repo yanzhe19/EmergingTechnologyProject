@@ -12,8 +12,8 @@ var passport = require('passport'),
 module.exports = function() {
 	// Use github strategy
 	passport.use(new GithubStrategy({
-			clientID: config.github.clientID,
-			clientSecret: config.github.clientSecret,
+			clientID: 'c952cf9531e6156502df',
+			clientSecret: '81c0aea9484e5c9b236df974a4995087fc6d7e92',
 			callbackURL: config.github.callbackURL,
 			passReqToCallback: true
 		},
