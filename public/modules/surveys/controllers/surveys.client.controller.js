@@ -52,39 +52,39 @@
         //list of all quesions in this survey
         $scope.questionGroup = [
             {
-             "questionTxt": "",
-             "questionOptions": [
-                            {"optionTxt": ""},
-                            {"optionTxt": ""},
-                            {"optionTxt": ""},
-                            {"optionTxt": ""}
+             'questionTxt': '',
+             'questionOptions': [
+                            {'optionTxt': ''},
+                            {'optionTxt': ''},
+                            {'optionTxt': ''},
+                            {'optionTxt': ''}
                           ]
             },
             {
-             "questionTxt": "",
-             "questionOptions": [
-                            {"optionTxt": ""},
-                            {"optionTxt": ""},
-                            {"optionTxt": ""},
-                            {"optionTxt": ""}
+             'questionTxt': '',
+             'questionOptions': [
+                            {'optionTxt': ''},
+                            {'optionTxt': ''},
+                            {'optionTxt': ''},
+                            {'optionTxt': ''}
                           ]
             },
             {
-             "questionTxt": "",
-             "questionOptions": [
-                            {"optionTxt": ""},
-                            {"optionTxt": ""},
-                            {"optionTxt": ""},
-                            {"optionTxt": ""}
+             'questionTxt': '',
+             'questionOptions': [
+                            {'optionTxt': ''},
+                            {'optionTxt': ''},
+                            {'optionTxt': ''},
+                            {'optionTxt': ''}
                           ]
             },
             {
-             "questionTxt": "",
-             "questionOptions": [
-                            {"optionTxt": ""},
-                            {"optionTxt": ""},
-                            {"optionTxt": ""},
-                            {"optionTxt": ""}
+             'questionTxt': '',
+             'questionOptions': [
+                            {'optionTxt': ''},
+                            {'optionTxt': ''},
+                            {'optionTxt': ''},
+                            {'optionTxt': ''}
                           ]
             }
         ];
@@ -103,7 +103,7 @@
         };
         
         $scope.addRadio = function (radioIdx, questionIdx) {
-            $scope.questionGroup[questionIdx].questionOptions.splice(radioIdx + 1, 0, {"optionTxt": ""});
+            $scope.questionGroup[questionIdx].questionOptions.splice(radioIdx + 1, 0, {'optionTxt': ''});
         };
         
         $scope.removeRadio = function (radioIdx, questionIdx) {
@@ -112,12 +112,12 @@
         
         $scope.addQuestion = function (questionIdx) {
             $scope.questionGroup.splice(questionIdx + 1, 0,  { 
-                                                              "questionTxt": "",
-                                                              "questionOptions": [
-                                                                             {"optionTxt": ""},
-                                                                             {"optionTxt": ""},
-                                                                             {"optionTxt": ""},
-                                                                             {"optionTxt": ""}
+                                                              'questionTxt': '',
+                                                              'questionOptions': [
+                                                                             {'optionTxt': ''},
+                                                                             {'optionTxt': ''},
+                                                                             {'optionTxt': ''},
+                                                                             {'optionTxt': ''}
                                                                            ]
                                                              }
                                        );            
@@ -145,15 +145,15 @@
                 }
             }
             return $scope.validForm;
-        }
+        };
         
         //save the choosed survey template
-        $scope.radioSurveyTemplate;
+        $scope.radioSurveyTemplate = null;
         $scope.surveyTemplateName = surveyNameService.getName();
         
         //model for the survey time
-        $scope.surveyStartTime;
-        $scope.surveyEndTime;
+        $scope.surveyStartTime = null;
+        $scope.surveyEndTime = null;
         
         //function to validate the survey start and end tiem        
         $scope.validateTime = function(){
@@ -193,7 +193,7 @@
             //set or update the survey name
             surveyNameService.setName($scope.surveyTemplateName);
             $location.path('setsurveylifetime');        
-        }
+        };
         
         $scope.backToCreateSurvey = function(){
             $location.path('surveys/choose-survey-template');
@@ -217,8 +217,8 @@
 				$location.path('surveys/' + response._id);
 
 				// Clear form fields
-				surveyNameService.setName("");
-                questionsService.setQuestionsObj("");
+				surveyNameService.setName('');
+                questionsService.setQuestionsObj('');
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -257,6 +257,13 @@
 			$scope.surveys = Surveys.query();
 		};
 
+        // Find existing Survey
+		$scope.findSurveyByUserID = function() {
+			$scope.surveys = Surveys.get({ 
+				userId: $stateParams.surveyId
+			});
+		};
+        
 		// Find existing Survey
 		$scope.findOne = function() {
 			$scope.survey = Surveys.get({ 
@@ -266,12 +273,12 @@
         
         $scope.addQueForUpdate = function(queIdx){
              $scope.survey.questions.splice(queIdx + 1, 0,  { 
-                                                              "questionTxt": "",
-                                                              "questionOptions": [
-                                                                             {"optionTxt": ""},
-                                                                             {"optionTxt": ""},
-                                                                             {"optionTxt": ""},
-                                                                             {"optionTxt": ""}
+                                                              'questionTxt': '',
+                                                              'questionOptions': [
+                                                                             {'optionTxt': ''},
+                                                                             {'optionTxt': ''},
+                                                                             {'optionTxt': ''},
+                                                                             {'optionTxt': ''}
                                                                            ]
                                                              }
                                        );   
@@ -282,7 +289,7 @@
         };
         
         $scope.addRadioForUpdate = function (rdoIdx, queIdx) {
-            $scope.survey.questions[queIdx].questionOptions.splice(rdoIdx + 1, 0, {"optionTxt": ""});
+            $scope.survey.questions[queIdx].questionOptions.splice(rdoIdx + 1, 0, {'optionTxt': ''});
         };
         
         $scope.removeRadioForUpdate = function (rdoIdx, queIdx) {

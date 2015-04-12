@@ -4,7 +4,7 @@
 angular.module('answersurveys').controller('AnswersurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Answersurveys','Surveys',
 	function($scope, $stateParams, $location, Authentication, Answersurveys,Surveys) {
 		$scope.authentication = Authentication;
-        $scope.surveyAnswers = [{"question": "", "answer": ""}];
+        $scope.surveyAnswers = [{'question': '', 'answer': ''}];
         
 		// Create new Answersurvey
 		$scope.create = function() {
@@ -21,7 +21,7 @@ angular.module('answersurveys').controller('AnswersurveysController', ['$scope',
 				$location.path('answersurveys/' + response._id);
 
 				// Clear form fields
-				$scope.surveyAnswers = [{"question": "", "answer": ""}];
+				$scope.surveyAnswers = [{'question': '', 'answer': ''}];
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -56,9 +56,9 @@ angular.module('answersurveys').controller('AnswersurveysController', ['$scope',
 		};
 
 		// Find a list of Answersurveys
-//		$scope.find = function() {
-//			$scope.answersurveys = Answersurveys.query();
-//		};
+		$scope.findAllSurvey = function() {
+			$scope.surveys = Answersurveys.query();
+		};
 
 		// Find existing Answersurvey
 //		$scope.findOne = function() {
@@ -68,9 +68,9 @@ angular.module('answersurveys').controller('AnswersurveysController', ['$scope',
 //		};
         
         // Find a list of Surveys
-		$scope.findAllSurvey = function() {
-			$scope.surveys = Surveys.query();
-		};
+//		$scope.findAllSurvey = function() {
+//			$scope.surveys = Surveys.query();
+//		};
 
 		// Find existing Survey
 		$scope.findOneSurvey = function() {
