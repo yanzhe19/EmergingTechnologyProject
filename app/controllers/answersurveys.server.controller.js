@@ -75,7 +75,7 @@ exports.delete = function(req, res) {
  */
 var currentDateTime = new Date();
 exports.list = function(req, res) { 
-    Survey.find().where('endTime').gt(currentDateTime).sort('-created').populate('user', 'displayName').exec(function(err, surveys) {
+    Survey.find().where('endTime').gt(currentDateTime).find().where('startTime').lte(currentDateTime).sort('-created').populate('user', 'displayName').exec(function(err, surveys) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
