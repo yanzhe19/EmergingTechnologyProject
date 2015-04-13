@@ -12,8 +12,8 @@ var passport = require('passport'),
 module.exports = function() {
 	// Use google strategy
 	passport.use(new GoogleStrategy({
-			clientID: config.google.clientID,
-			clientSecret: config.google.clientSecret,
+			clientID: '187066635683-oe4tm6c4nsati7ul4ag4a4g9navubqgp.apps.googleusercontent.com',
+			clientSecret: 'g1rN9ISqHLxBNsJ8ahkZo1Gz',
 			callbackURL: config.google.callbackURL,
 			passReqToCallback: true
 		},
