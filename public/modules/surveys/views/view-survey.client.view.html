@@ -18,10 +18,12 @@
                         <div class="panel-body">
                             <div class="form-group">                                                   
                                 <div class="radio" ng-repeat="n in question.questionOptions">
-                                    <label>
-                                        <input type="radio" name="{{'questionRadios' + questionGroup.indexOf(question)}}" id={{question.questionOptions.indexOf(n)}} disabled>
-                                        {{n.optionTxt}}
-                                    </label>
+                                    <h5>{{n.optionTxt}}</h5>
+                                    <div class="progress">
+                                      <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{calStatistic(questionGroup.indexOf(question), question.questionOptions.indexOf(n))}}" aria-valuemin="0" aria-valuemax="100" style="width:{{calStatistic(questionGroup.indexOf(question), question.questionOptions.indexOf(n))}}">
+                                          {{calStatistic(questionGroup.indexOf(question), question.questionOptions.indexOf(n)) + " " +  "(" + n.answerCount + ")"}}
+                                      </div>
+                                    </div>         
                                 </div>
                             </div>
                         </div>

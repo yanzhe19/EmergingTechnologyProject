@@ -30,7 +30,8 @@ var SurveySchema = new Schema({
         questionTxt: String,
         questionOptions:[
             {
-            optionTxt:String
+            optionTxt:String,
+            answerCount:Number
             }
         ]
     }],

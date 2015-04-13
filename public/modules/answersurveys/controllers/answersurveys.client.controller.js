@@ -4,7 +4,7 @@
 angular.module('answersurveys').controller('AnswersurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Answersurveys','Surveys',
 	function($scope, $stateParams, $location, Authentication, Answersurveys,Surveys) {
 		$scope.authentication = Authentication;
-        $scope.surveyAnswers = [{'question': '', 'answer': ''}];
+        $scope.surveyAnswers = [{'question': 0, 'answer': 0}];
         
 		// Create new Answersurvey
 		$scope.create = function() {
@@ -48,13 +48,18 @@ angular.module('answersurveys').controller('AnswersurveysController', ['$scope',
 		$scope.update = function() {
 			var answersurvey = $scope.answersurvey;
 
+            for(var j = 0; j < $scope.answersurvey.questions.length; j++)
+            {
+                $scope.answersurvey.questions[j].questionOptions[$scope.surveyAnswers[j].answer].answerCount += 1;
+            }
+
 			answersurvey.$update(function() {
 				$location.path('answersurveys/' + answersurvey._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
 		};
-
+        
 		// Find a list of Answersurveys
 		$scope.findAllSurvey = function() {
 			$scope.surveys = Answersurveys.query();
@@ -80,5 +85,9 @@ angular.module('answersurveys').controller('AnswersurveysController', ['$scope',
 				surveyId: $stateParams.answersurveyId
 			});
 		};
+        
+        $scope.backToSurveyList = function(){
+            $location.path('answersurveys');
+        };
 	}
 ]);
