@@ -31,24 +31,37 @@ exports.create = function(req, res) {
  * Show the current Answersurvey
  */
 exports.read = function(req, res) {
-    res.jsonp(req.answersurvey);
+    res.jsonp(req.survey);
 };
 
 /**
  * Update a Answersurvey
  */
 exports.update = function(req, res) {
-    var answersurvey = req.answersurvey ;
+//    var answersurvey = req.answersurvey ;
+//
+//    answersurvey = _.extend(answersurvey , req.body);
+//
+//    answersurvey.save(function(err) {
+//        if (err) {
+//            return res.status(400).send({
+//                message: errorHandler.getErrorMessage(err)
+//            });
+//        } else {
+//            res.jsonp(answersurvey);
+//        }
+//    });
+    var survey = req.survey ;
 
-    answersurvey = _.extend(answersurvey , req.body);
+    survey = _.extend(survey , req.body);
 
-    answersurvey.save(function(err) {
+    survey.save(function(err) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            res.jsonp(answersurvey);
+            res.jsonp(survey);
         }
     });
 };
@@ -106,10 +119,17 @@ exports.answerListBySurveyID = function(req, res, id) {
  * Answersurvey middleware
  */
 exports.answersurveyByID = function(req, res, next, id) { 
-    Answersurvey.findById(id).populate('user', 'displayName').exec(function(err, answersurvey) {
+    Survey.findById(id).populate('user', 'displayName').exec(function(err, survey) {
         if (err) return next(err);
-        if (! answersurvey) return next(new Error('Failed to load Answersurvey ' + id));
-        req.answersurvey = answersurvey ;
+        if (! survey) return next(new Error('Failed to load Survey ' + id));
+        req.survey = survey ;
         next();
     });
 };
+
+//Answersurvey.findById(id).populate('user', 'displayName').exec(function(err, answersurvey) {
+//    if (err) return next(err);
+//    if (! answersurvey) return next(new Error('Failed to load Answersurvey ' + id));
+//    req.answersurvey = answersurvey ;
+//    next();
+//});

@@ -80,9 +80,10 @@ angular.module('answersurveys').controller('AnswersurveysController', ['$scope',
 		// Find existing Survey
 		$scope.findOneSurvey = function() {
             //console.log($stateParams.answersurveyId);
-			$scope.answersurvey = Surveys.get({ 
+            ///answersurveys/:answersurveyId
+			$scope.answersurvey = Answersurveys.get({ 
                 //set the survey Id to answer survey id passed from lisf of answer survey view
-				surveyId: $stateParams.answersurveyId
+				answersurveyId: $stateParams.answersurveyId
 			});
 		};
         
