@@ -353,5 +353,16 @@
         $scope.backToSurveyList = function(){
             $location.path('surveys');
         };
+        
+        $scope.calStatistic = function(queIdx, rdoIdx){
+            var total = 0;
+            var statisticValue = 0;
+            for (var z = 0; z < $scope.survey.questions[queIdx].questionOptions.length; z++)
+            {
+                total += $scope.survey.questions[queIdx].questionOptions[z].answerCount;
+            }
+            statisticValue = $scope.survey.questions[queIdx].questionOptions[rdoIdx].answerCount / total;
+            return ((statisticValue*100).toFixed(1) + '%');
+        };
 	}
 ]);
