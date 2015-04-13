@@ -13,7 +13,7 @@ module.exports = function(app) {
 //        .get(surveys.listByUserID);
 
     app.route('/surveys/:surveyId')
-        .get(surveys.read)
+        .get(users.requiresLogin,surveys.read)
         .put(users.requiresLogin, surveys.hasAuthorization, surveys.update)
         .delete(users.requiresLogin, surveys.hasAuthorization, surveys.delete);
 

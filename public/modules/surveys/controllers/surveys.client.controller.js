@@ -344,7 +344,7 @@
             {
                 total += $scope.survey.questions[queIdx].questionOptions[z].answerCount;
             }
-            if(total == 0)
+            if(total === 0)
             {   
                 statisticValue = 0;
             }

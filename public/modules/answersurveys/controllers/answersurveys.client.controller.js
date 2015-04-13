@@ -54,7 +54,7 @@ angular.module('answersurveys').controller('AnswersurveysController', ['$scope',
             }
 
 			answersurvey.$update(function() {
-				$location.path('answersurveys/' + answersurvey._id);
+				$location.path('/answersurveys/thanks');
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
