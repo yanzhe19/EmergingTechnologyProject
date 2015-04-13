@@ -262,8 +262,6 @@
 			$scope.survey = Surveys.get({ 
 				surveyId: $stateParams.surveyId
 			});
-            surveqyStatisService.findAllAnswer($stateParams.surveyId);
-            $scope.answers = surveqyStatisService.getAllAnswer();
 		};
         
         $scope.addQueForUpdate = function(queIdx){
