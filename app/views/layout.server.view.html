@@ -3,6 +3,10 @@
 
 <head>
 	<title>{{title}}</title>
+	
+	<!--Web font section -->
+	<link href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
 
 	<!-- General META -->
 	<meta charset="utf-8">
@@ -50,6 +54,7 @@
 			{% block content %}{% endblock %}
 		</section>
 	</section>
+	<footer ng-include="'/modules/core/views/footer.client.view.html'"></footer>
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
