@@ -49,51 +49,11 @@
         
         var Answers = $resource('/answersurveys/:surveyId');
         var findAllAnswer = function(inputSurveyId){
-//            var ObjectId = require('mongoose').Types.ObjectId; 
-//            this.fullID = new ObjectId(inputSurveyId);
             this.allAnswers = Answers.query({ 
                     surveyId: inputSurveyId
                 }); 
-        };       
-//        
-//        angular.module('answersurveys').factory('Answersurveys', ['$resource',
-//	function($resource) {
-//		return $resource('answersurveys/:answersurveyId', { answersurveyId: '@_id'
-//		}, {
-//			update: {
-//				method: 'PUT'
-//			}
-//		});
-//	}
-//]);
-//        
-//        
-//       // get all Answersurvey by one survey id
-//		var findAllAnswer = function(inputSurveyId) {
-//			this.allAnswers = Answersurveys.query({ 
-//				surveyId: inputSurveyId
-//			});
-//		};
-        
-//        $scope.survey = Surveys.get({ 
-//				surveyId: $stateParams.surveyId
-//			});
-        
-        //var lengtha = this.allAnswers;
-//        //questionsObj setter
-//      var setQuestionsObj = function(inputObj) {
-//          this.questionsObj = inputObj;
-//          //console.log('name: '+this.surveyName );
-//      };
-//
-//        //questionsObj getter
-//      var getQuestionsObj = function(){
-//          return this.questionsObj;
-//      };
-
+        };  
       return {
-//        setQuestionsObj: setQuestionsObj,
-//        getQuestionsObj: getQuestionsObj
           findAllAnswer:findAllAnswer
       };
     }]);
@@ -110,37 +70,37 @@
             {
              'questionTxt': '',
              'questionOptions': [
-                            {'optionTxt': ''},
-                            {'optionTxt': ''},
-                            {'optionTxt': ''},
-                            {'optionTxt': ''}
+                            {'optionTxt': '', 'answerCount': 0},
+                            {'optionTxt': '', 'answerCount': 0},
+                            {'optionTxt': '', 'answerCount': 0},
+                            {'optionTxt': '', 'answerCount': 0}
                           ]
             },
             {
              'questionTxt': '',
              'questionOptions': [
-                            {'optionTxt': ''},
-                            {'optionTxt': ''},
-                            {'optionTxt': ''},
-                            {'optionTxt': ''}
+                            {'optionTxt': '', 'answerCount': 0},
+                            {'optionTxt': '', 'answerCount': 0},
+                            {'optionTxt': '', 'answerCount': 0},
+                            {'optionTxt': '', 'answerCount': 0}
                           ]
             },
             {
              'questionTxt': '',
              'questionOptions': [
-                            {'optionTxt': ''},
-                            {'optionTxt': ''},
-                            {'optionTxt': ''},
-                            {'optionTxt': ''}
+                            {'optionTxt': '', 'answerCount': 0},
+                            {'optionTxt': '', 'answerCount': 0},
+                            {'optionTxt': '', 'answerCount': 0},
+                            {'optionTxt': '', 'answerCount': 0}
                           ]
             },
             {
              'questionTxt': '',
              'questionOptions': [
-                            {'optionTxt': ''},
-                            {'optionTxt': ''},
-                            {'optionTxt': ''},
-                            {'optionTxt': ''}
+                            {'optionTxt': '', 'answerCount': 0},
+                            {'optionTxt': '', 'answerCount': 0},
+                            {'optionTxt': '', 'answerCount': 0},
+                            {'optionTxt': '', 'answerCount': 0}
                           ]
             }
         ];
@@ -159,7 +119,7 @@
         };
         
         $scope.addRadio = function (radioIdx, questionIdx) {
-            $scope.questionGroup[questionIdx].questionOptions.splice(radioIdx + 1, 0, {'optionTxt': ''});
+            $scope.questionGroup[questionIdx].questionOptions.splice(radioIdx + 1, 0, {'optionTxt': '', 'answerCount': 0});
         };
         
         $scope.removeRadio = function (radioIdx, questionIdx) {
@@ -170,10 +130,10 @@
             $scope.questionGroup.splice(questionIdx + 1, 0,  { 
                                                               'questionTxt': '',
                                                               'questionOptions': [
-                                                                             {'optionTxt': ''},
-                                                                             {'optionTxt': ''},
-                                                                             {'optionTxt': ''},
-                                                                             {'optionTxt': ''}
+                                                                             {'optionTxt': '', 'answerCount': 0},
+                                                                             {'optionTxt': '', 'answerCount': 0},
+                                                                             {'optionTxt': '', 'answerCount': 0},
+                                                                             {'optionTxt': '', 'answerCount': 0}
                                                                            ]
                                                              }
                                        );            
@@ -325,10 +285,10 @@
              $scope.survey.questions.splice(queIdx + 1, 0,  { 
                                                               'questionTxt': '',
                                                               'questionOptions': [
-                                                                             {'optionTxt': ''},
-                                                                             {'optionTxt': ''},
-                                                                             {'optionTxt': ''},
-                                                                             {'optionTxt': ''}
+                                                                             {'optionTxt': '', 'answerCount': 0},
+                                                                             {'optionTxt': '', 'answerCount': 0},
+                                                                             {'optionTxt': '', 'answerCount': 0},
+                                                                             {'optionTxt': '', 'answerCount': 0}
                                                                            ]
                                                              }
                                        );   
@@ -339,7 +299,7 @@
         };
         
         $scope.addRadioForUpdate = function (rdoIdx, queIdx) {
-            $scope.survey.questions[queIdx].questionOptions.splice(rdoIdx + 1, 0, {'optionTxt': ''});
+            $scope.survey.questions[queIdx].questionOptions.splice(rdoIdx + 1, 0, {'optionTxt': '', 'answerCount': 0});
         };
         
         $scope.removeRadioForUpdate = function (rdoIdx, queIdx) {

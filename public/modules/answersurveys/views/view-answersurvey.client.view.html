@@ -8,7 +8,7 @@
                     <div class="panel-heading" role="tab" id="{{'heading' + questionGroup.indexOf(question)}}">
                         <h4 class="panel-title">
                             <!--set the value of question-->
-                            <label ng-init="surveyAnswers[questionGroup.indexOf(question)].question= question.questionTxt">Q{{questionGroup.indexOf(question) + 1}}:{{question.questionTxt}}</label>     
+                            <label ng-init="surveyAnswers[questionGroup.indexOf(question)].question= questionGroup.indexOf(question)">Q{{questionGroup.indexOf(question) + 1}}:{{question.questionTxt}}</label>     
                         </h4>              
                     </div>               
                     <div class="panel-body">
@@ -18,7 +18,7 @@
                             <div class="radio" ng-repeat="n in question.questionOptions">
                                 <label>
                                     <!--set value of answer to model-->
-                                    <input type="radio" name="{{'questionRadios' + questionGroup.indexOf(question)}}" required ng-model="surveyAnswers[questionGroup.indexOf(question)].answer" value={{n.optionTxt}} id={{question.questionOptions.indexOf(n)}}>
+                                    <input type="radio" name="{{'questionRadios' + questionGroup.indexOf(question)}}" required ng-model="surveyAnswers[questionGroup.indexOf(question)].answer" value={{question.questionOptions.indexOf(n)}} id={{question.questionOptions.indexOf(n)}}>
                                     {{n.optionTxt}}
                                 </label>
                             </div>
@@ -31,8 +31,8 @@
 
     </div>
     <center>
-        <button type="button" class="btn btn-success" ng-click="backToCreateSurvey()"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
-        <button type="button" class="btn btn-success" ng-click="create()" ng-disabled="answerSurveyForm.$invalid"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Submit</button>    
+        <button type="button" class="btn btn-danger" ng-click="backToSurveyList()"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
+        <button type="button" class="btn btn-success" ng-click="update()" ng-disabled="answerSurveyForm.$invalid"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Submit</button>    
     </center>  
     <small>
         <em class="text-muted">
