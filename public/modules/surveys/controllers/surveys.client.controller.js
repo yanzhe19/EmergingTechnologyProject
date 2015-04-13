@@ -42,25 +42,9 @@
       };
     }]);
 
-    //+++++++++++++++++++++survey statistics service++++++++++++++++++++
-    surveyApp.factory('surveqyStatisService', ['$resource', function($resource) {
-        var allAnswers;
-        var fullID;
-        
-        var Answers = $resource('/answersurveys/:surveyId');
-        var findAllAnswer = function(inputSurveyId){
-            this.allAnswers = Answers.query({ 
-                    surveyId: inputSurveyId
-                }); 
-        };  
-      return {
-          findAllAnswer:findAllAnswer
-      };
-    }]);
-
     //+++++++++++++++++++++SurveysController+++++++++++++++++++++
-    surveyApp.controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys', 'Answersurveys', 'surveyNameService','questionsService','surveqyStatisService',
-	function($scope, $stateParams, $location, Authentication, Surveys,Answersurveys,surveyNameService,questionsService,surveqyStatisService) {
+    surveyApp.controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys', 'Answersurveys', 'surveyNameService','questionsService',
+	function($scope, $stateParams, $location, Authentication, Surveys,Answersurveys,surveyNameService,questionsService) {
 		$scope.authentication = Authentication;
 
         //this is the list of all surveys in database
@@ -278,7 +262,6 @@
 			$scope.survey = Surveys.get({ 
 				surveyId: $stateParams.surveyId
 			});
-            surveqyStatisService.findAllAnswer($stateParams.surveyId);
 		};
         
         $scope.addQueForUpdate = function(queIdx){
@@ -361,8 +344,24 @@
             {
                 total += $scope.survey.questions[queIdx].questionOptions[z].answerCount;
             }
-            statisticValue = $scope.survey.questions[queIdx].questionOptions[rdoIdx].answerCount / total;
+            if(total == 0)
+            {   
+                statisticValue = 0;
+            }
+            else
+            {
+                statisticValue = $scope.survey.questions[queIdx].questionOptions[rdoIdx].answerCount / total;
+            }
             return ((statisticValue*100).toFixed(1) + '%');
+        };
+        
+        $scope.calTotal = function(optionLength){
+            var totalAnswered = 0;
+            for (var t = 0; t < optionLength; t++)
+            {
+                totalAnswered += $scope.survey.questions[0].questionOptions[t].answerCount;
+            }
+            return totalAnswered;
         };
 	}
 ]);

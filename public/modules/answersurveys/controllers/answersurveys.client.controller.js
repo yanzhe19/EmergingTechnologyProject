@@ -27,7 +27,7 @@ angular.module('answersurveys').controller('AnswersurveysController', ['$scope',
 			});
 		};
 
-		// Remove existing Answersurvey
+		// Remove existing Answersurvey 
 		$scope.remove = function(answersurvey) {
 			if ( answersurvey ) { 
 				answersurvey.$remove();
