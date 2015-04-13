@@ -363,5 +363,10 @@
             }
             return totalAnswered;
         };
+
+        $scope.checkUserLogin = function () {
+            //check if user login or not, if user logedin, they can get survey list
+            Surveys.query();
+        };
 	}
 ]);

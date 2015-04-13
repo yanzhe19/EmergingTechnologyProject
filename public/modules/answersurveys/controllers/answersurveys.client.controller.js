@@ -64,23 +64,9 @@ angular.module('answersurveys').controller('AnswersurveysController', ['$scope',
 		$scope.findAllSurvey = function() {
 			$scope.surveys = Answersurveys.query();
 		};
-
-		// Find existing Answersurvey
-//		$scope.findOne = function() {
-//			$scope.answersurvey = Answersurveys.get({ 
-//				answersurveyId: $stateParams.answersurveyId
-//			});
-//		};
         
-        // Find a list of Surveys
-//		$scope.findAllSurvey = function() {
-//			$scope.surveys = Surveys.query();
-//		};
-
 		// Find existing Survey
 		$scope.findOneSurvey = function() {
-            //console.log($stateParams.answersurveyId);
-            ///answersurveys/:answersurveyId
 			$scope.answersurvey = Answersurveys.get({ 
                 //set the survey Id to answer survey id passed from lisf of answer survey view
 				answersurveyId: $stateParams.answersurveyId

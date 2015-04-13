@@ -6,20 +6,12 @@ module.exports = function(app) {
 
     // Answersurveys Routes
     app.route('/answersurveys')
-        .get(answersurveys.list)
-        .post(answersurveys.create);
-    //        .post(users.requiresLogin, answersurveys.create);
-
-//    app.route('/answersurveys/:surveyId')
-//        .get(answersurveys.answerListBySurveyID);
+        .get(answersurveys.list);
 
     app.route('/answersurveys/:answersurveyId')
         .get(answersurveys.read)
         .put(answersurveys.update);
-//        .delete(answersurveys.delete);
-    //		.put(users.requiresLogin, answersurveys.hasAuthorization, answersurveys.update)
-    //		.delete(users.requiresLogin, answersurveys.hasAuthorization, answersurveys.delete);
-
+    
     // Finish by binding the Answersurvey middleware
     app.param('answersurveyId', answersurveys.answersurveyByID);
 };

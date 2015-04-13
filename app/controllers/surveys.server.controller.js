@@ -85,21 +85,6 @@ exports.list = function(req, res) {
 };
 
 /**
- * List of Surveys, Use this one as reference for your furture modification
- */
-//exports.listByUserID = function(req, res, id) { 
-//    Survey.find({ user: req.user.id } ).sort('-created').populate('user', 'displayName').exec(function(err, surveys) {
-//        if (err) {
-//            return res.status(400).send({
-//                message: errorHandler.getErrorMessage(err)
-//            });
-//        } else {
-//            res.jsonp(surveys);
-//        }
-//    });
-//};
-
-/**
  * Survey middleware
  */
 exports.surveyByID = function(req, res, next, id) { 

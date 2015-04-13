@@ -5,27 +5,9 @@
  */
 var mongoose = require('mongoose'),
     errorHandler = require('./errors.server.controller'),
-    Answersurvey = mongoose.model('Answersurvey'),
+//    Answersurvey = mongoose.model('Answersurvey'),
     Survey = mongoose.model('Survey'),
     _ = require('lodash');
-
-/**
- * Create a Answersurvey
- */
-exports.create = function(req, res) {
-    var answersurvey = new Answersurvey(req.body);
-    //answersurvey.user = req.user;
-
-    answersurvey.save(function(err) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.jsonp(answersurvey);
-        }
-    });
-};
 
 /**
  * Show the current Answersurvey
@@ -35,22 +17,9 @@ exports.read = function(req, res) {
 };
 
 /**
- * Update a Answersurvey
+ * Update a survey
  */
 exports.update = function(req, res) {
-//    var answersurvey = req.answersurvey ;
-//
-//    answersurvey = _.extend(answersurvey , req.body);
-//
-//    answersurvey.save(function(err) {
-//        if (err) {
-//            return res.status(400).send({
-//                message: errorHandler.getErrorMessage(err)
-//            });
-//        } else {
-//            res.jsonp(answersurvey);
-//        }
-//    });
     var survey = req.survey ;
 
     survey = _.extend(survey , req.body);
@@ -62,23 +31,6 @@ exports.update = function(req, res) {
             });
         } else {
             res.jsonp(survey);
-        }
-    });
-};
-
-/**
- * Delete an Answersurvey
- */
-exports.delete = function(req, res) {
-    var answersurvey = req.answersurvey ;
-
-    answersurvey.remove(function(err) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.jsonp(answersurvey);
         }
     });
 };
@@ -99,22 +51,6 @@ exports.list = function(req, res) {
     });
 };
 
-
-/**
- * get all answers for specific survey
- */
-exports.answerListBySurveyID = function(req, res, id) { 
-    Answersurvey.find({ surveyId:id }).populate('user', 'displayName').exec(function(err, answersurvey) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.jsonp(answersurvey);
-        }
-    });
-};
-
 /**
  * Answersurvey middleware
  */
@@ -126,10 +62,3 @@ exports.answersurveyByID = function(req, res, next, id) {
         next();
     });
 };
-
-//Answersurvey.findById(id).populate('user', 'displayName').exec(function(err, answersurvey) {
-//    if (err) return next(err);
-//    if (! answersurvey) return next(new Error('Failed to load Answersurvey ' + id));
-//    req.answersurvey = answersurvey ;
-//    next();
-//});

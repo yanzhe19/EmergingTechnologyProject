@@ -9,9 +9,6 @@ module.exports = function(app) {
         .get(users.requiresLogin,surveys.list)//added user login requirements in order to see the survey list
         .post(users.requiresLogin, surveys.create);
 
-//    app.route('/surveys/:userId')
-//        .get(surveys.listByUserID);
-
     app.route('/surveys/:surveyId')
         .get(users.requiresLogin,surveys.read)
         .put(users.requiresLogin, surveys.hasAuthorization, surveys.update)
@@ -19,7 +16,4 @@ module.exports = function(app) {
 
     // Finish by binding the Survey middleware
     app.param('surveyId', surveys.surveyByID);
-
-    //bind user id to list survey by user id
-//    app.param('userId', surveys.listByUserID);
 };
