@@ -46,7 +46,7 @@
     surveyApp.controller('SurveysController', ['$scope', '$stateParams', '$location', 'Authentication', 'Surveys', 'Answersurveys', 'surveyNameService','questionsService',
 	function($scope, $stateParams, $location, Authentication, Surveys,Answersurveys,surveyNameService,questionsService) {
 		$scope.authentication = Authentication;
-
+        
         //this is the list of all surveys in database
         //$scope.surveys = Surveys.query();
         //list of all quesions in this survey
@@ -261,9 +261,34 @@
 		$scope.findOne = function() {
 			$scope.survey = Surveys.get({ 
 				surveyId: $stateParams.surveyId
-			});
+			});            
 		};
         
+        $scope.getArray = function () {
+            $scope.getHeader = function () {return ['Question', 'Option', 'Statistics']};
+            $scope.returnStatistics = []; //return array
+            
+            $scope.counter = 0;
+            for (var y = 0; y < $scope.survey.questions.length; y++)
+            {
+                for (var g = 0; g < $scope.survey.questions[y].questionOptions.length; g++)
+                {
+                    $scope.returnStatistics[$scope.counter] = {
+                        a: $scope.survey.questions[y].questionTxt,                                                         b: $scope.survey.questions[y].questionOptions[g].optionTxt,
+                        c: $scope.survey.questions[y].questionOptions[g].answerCount};             
+                    $scope.counter ++;
+                }
+            }
+            
+            //save total respondent to excel
+            $scope.returnStatistics[$scope.counter] = {
+                a:'',
+                b:'Toal Respondent: ',
+                c:$scope.total
+            };
+            return $scope.returnStatistics;
+        };
+                    
         $scope.addQueForUpdate = function(queIdx){
              $scope.survey.questions.splice(queIdx + 1, 0,  { 
                                                               'questionTxt': '',
@@ -338,19 +363,19 @@
         };
         
         $scope.calStatistic = function(queIdx, rdoIdx){
-            var total = 0;
+            $scope.total = 0;
             var statisticValue = 0;
             for (var z = 0; z < $scope.survey.questions[queIdx].questionOptions.length; z++)
             {
-                total += $scope.survey.questions[queIdx].questionOptions[z].answerCount;
+                $scope.total += $scope.survey.questions[queIdx].questionOptions[z].answerCount;
             }
-            if(total === 0)
+            if($scope.total === 0)
             {   
                 statisticValue = 0;
             }
             else
             {
-                statisticValue = $scope.survey.questions[queIdx].questionOptions[rdoIdx].answerCount / total;
+                statisticValue = $scope.survey.questions[queIdx].questionOptions[rdoIdx].answerCount / $scope.total;
             }
             return ((statisticValue*100).toFixed(1) + '%');
         };

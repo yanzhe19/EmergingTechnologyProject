@@ -31,7 +31,9 @@ module.exports = {
                 'public/lib/bootstrap/js/collapse.js',
                 'public/lib/moment/moment.js',   
                 'public/lib/bootstrap/dist/js/bootstrap.js',
-                'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js'
+                'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
+                'public/lib/angular-sanitize/angular-sanitize.js',
+                'public/lib/ng-csv/build/ng-csv.min.js'
 			]
 		},
 		css: [

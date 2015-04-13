@@ -34,6 +34,9 @@
         <a class="btn btn-primary" data-ng-click="remove();">
             <i class="glyphicon glyphicon-trash"></i>
         </a>
+        <a class="btn btn-primary" ng-csv="getArray()" csv-header="getHeader()" lazy-load="true" filename="{{ survey.name + '.csv'}}">
+            <i class="glyphicon glyphicon-floppy-save"></i>
+        </a>
     </div>
     <small>
         <em class="text-muted">
