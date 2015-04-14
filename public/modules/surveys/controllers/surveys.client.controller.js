@@ -348,6 +348,7 @@
         
         //function to validate the survey start and end time for update form        
         $scope.validateTimeForUpdate = function(){
+            $scope.timeCheckPass = false;
             if($scope.survey.endTime > $scope.survey.startTime){
                 //time ok, create survey
                 $scope.timeCheckPass = true;
