@@ -284,7 +284,7 @@
             $scope.returnStatistics[$scope.counter] = {
                 a:'',
                 b:'Toal Respondent: ',
-                c:$scope.total
+                c:$scope.totalAnswered
             };
             return $scope.returnStatistics;
         };
@@ -381,12 +381,12 @@
         };
         
         $scope.calTotal = function(optionLength){
-            var totalAnswered = 0;
+            $scope.totalAnswered = 0;
             for (var t = 0; t < optionLength; t++)
             {
-                totalAnswered += $scope.survey.questions[0].questionOptions[t].answerCount;
+                $scope.totalAnswered += $scope.survey.questions[0].questionOptions[t].answerCount;
             }
-            return totalAnswered;
+            return $scope.totalAnswered;
         };
 
         $scope.checkUserLogin = function () {
