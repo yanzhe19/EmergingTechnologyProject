@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: process.env.MONGOHQ_URL|| 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-survey' || 'mongodb://heroku_app35845601:cdoi59ftc567prbv0u0s9dk7mp@ds061701.mongolab.com:61701/heroku_app35845601?replicaSet=rs-ds061701' ,
+	db: process.env.MONGOHQ_URL|| 'mongodb://heroku_app35845601:cdoi59ftc567prbv0u0s9dk7mp@ds061701.mongolab.com:61701/heroku_app35845601?replicaSet=rs-ds061701'|| 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-survey' ,
 	app: {
 		title: 'Mean Survey - Development Environment'
 	},
