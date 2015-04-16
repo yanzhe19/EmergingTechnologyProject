@@ -22,18 +22,22 @@
                     <label class="radio">
                         <input type="radio" name="templateSelection" ng-model="radioSurveyTemplate" id="multipleChoiceRadio" value="multiple" required> Multiple Choice
                     </label>
+                    
+                    <!--
                     <label class="radio">
                         <input type="radio" name="templateSelection" ng-model="radioSurveyTemplate" id="agreeDisagreeRadio" value="agreeDisagree" required>Agree/Disagree
                     </label>
                     <label class="radio">
                         <input type="radio" name="templateSelection" ng-model="radioSurveyTemplate" id="shortAnswerRadio" value="shortAnswer" required>Short Answer  
                     </label>
+                    
+                    -->
                 </div>
             </div>
 
             <!--submit button, disabled if required field is empty-->
             <div class="form-group">
-                <button type="button" class="btn btn-success" ng-click="createTemplate()" ng-disabled="templateSelectionForm.$invalid"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Next</button>  
+                <button type="button" class="btn btn-success" ng-click="createTemplate()" ng-disabled="templateSelectionForm.$invalid" title="Next to Modify Survey Questions"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Next</button>  
             </div>
 
             <!--show error message-->

@@ -47,8 +47,8 @@
                         <a data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + survey.questions.indexOf(question)}}" aria-expanded="false" aria-controls="{{'collapse' + survey.questions.indexOf(question)}}">
                           <label>Q{{survey.questions.indexOf(question) + 1}}: Multiple Choice</label>                  
                         </a>  
-                        <button type="button" class="btn btn-success btn-circle" ng-click="addQueForUpdate($index)"><i class="glyphicon glyphicon-plus"></i></button>  
-                        <button type="button" class="btn btn-warning btn-circle" ng-click="removeQueForUpdate($index)"><i class="glyphicon glyphicon-remove"></i></button>              
+                        <button type="button" class="btn btn-success btn-circle" ng-click="addQueForUpdate($index)" title="Add Question Below"><i class="glyphicon glyphicon-plus"></i></button>  
+                        <button type="button" class="btn btn-warning btn-circle" ng-click="removeQueForUpdate($index)" title="Remove This Question"><i class="glyphicon glyphicon-remove"></i></button>              
                       </h4>  
                       <input type="text" class="form-control" placeholder="Enter your question" ng-model="question.questionTxt" required ng-trim="false">	            
                     </div>               
@@ -56,15 +56,15 @@
                       <div class="panel-body">
                         <div class="form-group"> 
 
-                            <button type="button" class="btn btn-success btn-circle" ng-click="addRadioForUpdate(0, $index)" ng-show="addBtnOnNoRdoForUpdate($index)"><i class="glyphicon glyphicon-plus"></i></button>                                                                   
+                            <button type="button" class="btn btn-success btn-circle" ng-click="addRadioForUpdate(0, $index)" ng-show="addBtnOnNoRdoForUpdate($index)" title="Add Radio Button"><i class="glyphicon glyphicon-plus"></i></button>                                                                   
 
                             <div class="radio" ng-repeat="n in question.questionOptions">
                                 <label>
                                     <input type="radio" name="{{'questionRadios' + survey.questions.indexOf(question)}}" id={{question.questionOptions.indexOf(n)}} disabled>
                                     <input type="text" class="form-control" placeholder="Enter answer choice" ng-model="n.optionTxt" required ng-trim="false">
                                 </label>
-                                <button type="button" class="btn btn-success btn-circle" ng-click="addRadioForUpdate($index, $parent.$index)"><i class="glyphicon glyphicon-plus"></i></button>
-                                <button type="button" class="btn btn-warning btn-circle" ng-click="removeRadioForUpdate($index, $parent.$index)"><i class="glyphicon glyphicon-remove"></i></button>
+                                <button type="button" class="btn btn-success btn-circle" ng-click="addRadioForUpdate($index, $parent.$index)" title="Add Radio Button Below"><i class="glyphicon glyphicon-plus"></i></button>
+                                <button type="button" class="btn btn-warning btn-circle" ng-click="removeRadioForUpdate($index, $parent.$index)" title="Remove This Radio Button"><i class="glyphicon glyphicon-remove"></i></button>
                             </div>
 
                         </div>
@@ -74,14 +74,14 @@
                 </div>
 
                 <center>
-                    <button type="button" class="btn btn-success btn-circle" ng-click="addQueForUpdate(survey.questions.length)"><i class="glyphicon glyphicon-plus"></i></button>  
+                    <button type="button" class="btn btn-success btn-circle" ng-click="addQueForUpdate(survey.questions.length)" title="Add Question"><i class="glyphicon glyphicon-plus"></i></button>  
                 </center>
                 
                 <br>
                
                 <center>
-                    <button type="button" class="btn btn-danger" ng-click="backToSurveyList()"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
-                    <button type="button" class="btn btn-success" ng-click="update()" ng-disabled="questionaryForm.$invalid || !validateSurveyFormForUpdate() || !timeCheckPassUpdate"><i class="glyphicon glyphicon-ok"></i>&nbsp;Update</button>    
+                    <button type="button" class="btn btn-danger" ng-click="backToSurveyList()" title="Back to Survey List"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
+                    <button type="button" class="btn btn-success" ng-click="update()" ng-disabled="questionaryForm.$invalid || !validateSurveyFormForUpdate() || !timeCheckPassUpdate" title="Update Survey"><i class="glyphicon glyphicon-ok"></i>&nbsp;Update</button>    
                 </center> 
 
 				<div data-ng-show="error" class="text-danger">
