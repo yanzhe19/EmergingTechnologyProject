@@ -157,6 +157,7 @@
         
         //function to validate the survey start and end tiem        
         $scope.validateTime = function(){
+            $scope.timeCheckPass = false;
             console.log('start time: '+$scope.surveyStartTime);
             console.log('start time: '+$scope.surveyEndTime);
             
@@ -327,7 +328,7 @@
         };
         
         $scope.validateSurveyFormForUpdate = function(){
-            $scope.validForm = false;
+            $scope.validForm = true;
             if($scope.survey.questions.length === 0)
             {
                 $scope.validForm = false;
@@ -346,17 +347,17 @@
             return $scope.validForm;
         };
         
-        //function to validate the survey start and end time for update form        
-        $scope.validateTimeForUpdate = function(){
-            $scope.timeCheckPass = false;
+        //function to validate the survey start and end time for update form     
+        $scope.timeCheckPassUpdate = true;
+        $scope.validateTimeForUpdate = function(){    
+            $scope.timeCheckPassUpdate = false;
             if($scope.survey.endTime > $scope.survey.startTime){
                 //time ok, create survey
-                $scope.timeCheckPass = true;
+                $scope.timeCheckPassUpdate = true;
             }else if($scope.survey.endTime <= $scope.survey.startTime){
                 //end time must after start time
-                $scope.timeCheckPass = false;
+                $scope.timeCheckPassUpdate = false;
             }
-            return $scope.timeCheckPass;
         };
         
         $scope.backToSurveyList = function(){

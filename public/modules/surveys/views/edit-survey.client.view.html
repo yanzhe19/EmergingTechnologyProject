@@ -16,7 +16,7 @@
                             </div>
                         </a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <datetimepicker data-ng-model="survey.startTime" data-datetimepicker-config="{ dropdownSelector: '#surveyEndDropDown' }"/>
+                            <datetimepicker ng-change="validateTimeForUpdate()" data-ng-model="survey.startTime" data-datetimepicker-config="{ dropdownSelector: '#surveyEndDropDown' }"/>
                         </ul>
                     </div>
                 </div>
@@ -43,14 +43,14 @@
                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" role="tablist" data-ng-model="survey.questions">
                   <div class="panel panel-default" ng-repeat="question in survey.questions">
                     <div class="panel-heading" role="tab" id="{{'heading' + survey.questions.indexOf(question)}}">
-                      <h4 class="panel-title">
+                      <h4 class="panel-title questionTitleGroup">
                         <a data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + survey.questions.indexOf(question)}}" aria-expanded="false" aria-controls="{{'collapse' + survey.questions.indexOf(question)}}">
                           <label>Q{{survey.questions.indexOf(question) + 1}}: Multiple Choice</label>                  
                         </a>  
                         <button type="button" class="btn btn-success btn-circle" ng-click="addQueForUpdate($index)"><i class="glyphicon glyphicon-plus"></i></button>  
-                        <button type="button" class="btn btn-warning btn-circle" ng-click="removeQueForUpdate($index)"><i class="glyphicon glyphicon-remove"></i></button>    
-                        <input type="text" class="form-control" placeholder="Enter your question" ng-model="question.questionTxt" required ng-trim="false">	          
-                      </h4>              
+                        <button type="button" class="btn btn-warning btn-circle" ng-click="removeQueForUpdate($index)"><i class="glyphicon glyphicon-remove"></i></button>              
+                      </h4>  
+                      <input type="text" class="form-control" placeholder="Enter your question" ng-model="question.questionTxt" required ng-trim="false">	            
                     </div>               
                     <div id="{{'collapse' + survey.questions.indexOf(question)}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{'heading' + survey.questions.indexOf(question)}}">
                       <div class="panel-body">
@@ -81,7 +81,7 @@
                
                 <center>
                     <button type="button" class="btn btn-danger" ng-click="backToSurveyList()"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
-                    <button type="button" class="btn btn-success" ng-click="update()" ng-disabled="questionaryForm.$invalid || !validateSurveyFormForUpdate() || !validateTimeForUpdate()"><i class="glyphicon glyphicon-ok"></i>&nbsp;Update</button>    
+                    <button type="button" class="btn btn-success" ng-click="update()" ng-disabled="questionaryForm.$invalid || !validateSurveyFormForUpdate() || !timeCheckPassUpdate"><i class="glyphicon glyphicon-ok"></i>&nbsp;Update</button>    
                 </center> 
 
 				<div data-ng-show="error" class="text-danger">

@@ -10,14 +10,14 @@
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" role="tablist">
             <div class="panel panel-default" ng-repeat="question in questionGroup">
                 <div class="panel-heading" role="tab" id="{{'heading' + questionGroup.indexOf(question)}}">
-                    <h4 class="panel-title">
+                    <h4 class="panel-title questionTitleGroup">
                         <a data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + questionGroup.indexOf(question)}}" aria-expanded="false" aria-controls="{{'collapse' + questionGroup.indexOf(question)}}">
                             <label>Q{{questionGroup.indexOf(question) + 1}}: Multiple Choice</label>                  
                         </a>  
                         <button type="button" class="btn btn-success btn-circle" ng-click="addQuestion($index)"><i class="glyphicon glyphicon-plus"></i></button>  
                         <button type="button" class="btn btn-warning btn-circle" ng-click="removeQuestion($index)"><i class="glyphicon glyphicon-remove"></i></button>    
-                        <input type="text" class="form-control" placeholder="Enter your question" ng-model="question.questionTxt" required ng-trim="false">	          
-                    </h4>              
+                     </h4> 
+                     <input type="text" class="form-control" placeholder="Enter your question" ng-model="question.questionTxt" required ng-trim="false">	                     
                 </div>               
                 <div id="{{'collapse' + questionGroup.indexOf(question)}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{'heading' + questionGroup.indexOf(question)}}">
                     <div class="panel-body">

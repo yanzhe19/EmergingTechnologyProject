@@ -16,7 +16,7 @@
                             </div>
                         </a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <datetimepicker data-ng-model="surveyStartTime" data-datetimepicker-config="{ dropdownSelector: '#surveyEndDropDown' }"/>
+                            <datetimepicker ng-change="validateTime()" data-ng-model="surveyStartTime" data-datetimepicker-config="{ dropdownSelector: '#surveyEndDropDown' }"/>
                         </ul>
                     </div>
                 </div>
