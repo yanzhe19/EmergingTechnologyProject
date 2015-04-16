@@ -4,13 +4,23 @@
     </div>
     <div class="list-group">
         <a data-ng-repeat="survey in surveys" data-ng-href="#!/surveys/{{survey._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="survey.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="survey.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="survey.name"></h4>
+            <div class="row">
+                <div class="col-xs-6">
+                    <h3 class="list-group-item-heading" data-ng-bind="survey.name"></h3>
+                </div>
+                <div class="col-xs-3">
+                    <small class="list-group-item-text">
+				        Started on: &nbsp;
+				        <span data-ng-bind="survey.startTime | date:'medium'"></span>				        
+			        </small>
+                </div>
+                <div class="col-xs-3">
+                    <small class="list-group-item-text">
+				        Expire at: &nbsp;
+				        <span data-ng-bind="survey.endTime | date:'medium'"></span>
+			        </small>
+                </div>
+            </div>
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!surveys.$resolved || surveys.length">

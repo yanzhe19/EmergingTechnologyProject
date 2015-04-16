@@ -265,7 +265,7 @@
 		};
         
         $scope.getArray = function () {
-            $scope.getHeader = function () {return ['Question', 'Option', 'Statistics']};
+            $scope.getHeader = function () {return ['Question', 'Option', 'Statistics'];};
             $scope.returnStatistics = []; //return array
             
             $scope.counter = 0;

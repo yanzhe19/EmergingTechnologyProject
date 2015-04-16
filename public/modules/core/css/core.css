@@ -14,10 +14,10 @@
 	border-color: #78FA89;
 }
 
-#webTitle{
+.webTitle{
     font-family: 'Chewy', cursive;
 }
 
-#footerTxt{
+.footerTxt{
     font-family: 'Anton', sans-serif;
 }
