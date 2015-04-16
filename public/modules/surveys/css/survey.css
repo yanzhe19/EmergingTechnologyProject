@@ -10,3 +10,6 @@
 .questionTitleGroup{
     margin-bottom: 1%;
 }
+a.list-group-item:hover{
+    background-color: #CCFFFF;
+}
