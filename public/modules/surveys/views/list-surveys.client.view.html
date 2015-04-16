@@ -5,16 +5,16 @@
     <div class="list-group">
         <a data-ng-repeat="survey in surveys" data-ng-href="#!/surveys/{{survey._id}}" class="list-group-item">
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-12 col-sm-6">
                     <h3 class="list-group-item-heading" data-ng-bind="survey.name"></h3>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                     <small class="list-group-item-text">
 				        Started on: &nbsp;
 				        <span data-ng-bind="survey.startTime | date:'medium'"></span>				        
 			        </small>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                     <small class="list-group-item-text">
 				        Expire at: &nbsp;
 				        <span data-ng-bind="survey.endTime | date:'medium'"></span>
