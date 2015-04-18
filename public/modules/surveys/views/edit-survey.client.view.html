@@ -1,6 +1,16 @@
+<!-- 
+File name : edit-survey.client.view.html
+Author: Zhe Yan & Zida Bi
+Website name: survey elephant
+Description: survey update page for users to update their own surveys
+-->
+       
+
 <section data-ng-controller="SurveysController" data-ng-init="findOne()">
+       <!--page title-->
         <h1>Edit Survey</h1>
         <form name="questionaryForm">
+               <!--survey name section, pre-filled with original survey name -->
                 <div class="form-group">
                     <label class="control-label" for="name">Survey Name</label>
                     <input type="text" data-ng-model="survey.name" id="name" class="form-control" placeholder="Name" required>
@@ -39,31 +49,41 @@
                 
                 
                 
-                
+                <!-- survey questions, pre-filled with original text from database-->
                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" role="tablist" data-ng-model="survey.questions">
                   <div class="panel panel-default" ng-repeat="question in survey.questions">
                     <div class="panel-heading" role="tab" id="{{'heading' + survey.questions.indexOf(question)}}">
                       <h4 class="panel-title questionTitleGroup">
                         <a data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + survey.questions.indexOf(question)}}" aria-expanded="false" aria-controls="{{'collapse' + survey.questions.indexOf(question)}}">
+                          <!--question header -->
                           <label>Q{{survey.questions.indexOf(question) + 1}}: Multiple Choice</label>                  
                         </a>  
+                        <!-- button to add question below the current question-->
                         <button type="button" class="btn btn-success btn-circle" ng-click="addQueForUpdate($index)" title="Add Question Below"><i class="glyphicon glyphicon-plus"></i></button>  
+                        <!--remove current question -->
                         <button type="button" class="btn btn-warning btn-circle" ng-click="removeQueForUpdate($index)" title="Remove This Question"><i class="glyphicon glyphicon-remove"></i></button>              
                       </h4>  
+                      <!--question text -->
                       <input type="text" class="form-control" placeholder="Enter your question" ng-model="question.questionTxt" required ng-trim="false">	            
-                    </div>               
+                    </div> 
+                    <!-- collapse questions radio buttons-->              
                     <div id="{{'collapse' + survey.questions.indexOf(question)}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{'heading' + survey.questions.indexOf(question)}}">
                       <div class="panel-body">
                         <div class="form-group"> 
 
+                           <!--button to add a radio button, only display when no radio exist in the current question -->
                             <button type="button" class="btn btn-success btn-circle" ng-click="addRadioForUpdate(0, $index)" ng-show="addBtnOnNoRdoForUpdate($index)" title="Add Radio Button"><i class="glyphicon glyphicon-plus"></i></button>                                                                   
 
                             <div class="radio" ng-repeat="n in question.questionOptions">
                                 <label>
+                                   <!--radio button, disabled -->
                                     <input type="radio" name="{{'questionRadios' + survey.questions.indexOf(question)}}" id={{question.questionOptions.indexOf(n)}} disabled>
+                                    <!--radio button text -->
                                     <input type="text" class="form-control" placeholder="Enter answer choice" ng-model="n.optionTxt" required ng-trim="false">
                                 </label>
+                                <!-- button to add radio button below current radio-->
                                 <button type="button" class="btn btn-success btn-circle" ng-click="addRadioForUpdate($index, $parent.$index)" title="Add Radio Button Below"><i class="glyphicon glyphicon-plus"></i></button>
+                                <!--button to remove current radio button -->
                                 <button type="button" class="btn btn-warning btn-circle" ng-click="removeRadioForUpdate($index, $parent.$index)" title="Remove This Radio Button"><i class="glyphicon glyphicon-remove"></i></button>
                             </div>
 
@@ -73,17 +93,20 @@
                   </div>
                 </div>
 
+               <!--button to add a new question at very bottom -->
                 <center>
                     <button type="button" class="btn btn-success btn-circle" ng-click="addQueForUpdate(survey.questions.length)" title="Add Question"><i class="glyphicon glyphicon-plus"></i></button>  
                 </center>
                 
                 <br>
                
+               <!-- button to go back survey list, and button to submit changes for the survey -->
                 <center>
                     <button type="button" class="btn btn-danger" ng-click="backToSurveyList()" title="Back to Survey List"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
                     <button type="button" class="btn btn-success" ng-click="update()" ng-disabled="questionaryForm.$invalid || !validateSurveyFormForUpdate() || !timeCheckPassUpdate" title="Update Survey"><i class="glyphicon glyphicon-ok"></i>&nbsp;Update</button>    
                 </center> 
 
+                <!-- display error message for this page-->
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>
 				</div>

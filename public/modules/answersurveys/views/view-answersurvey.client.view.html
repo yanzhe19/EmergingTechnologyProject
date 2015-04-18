@@ -1,13 +1,24 @@
+<!--
+  File name: view-answersurvey.client.view.html
+  Author: Zhe Yan & Zida Bi
+  Website name: Survey elephant
+  Description: the survey page, which display all the questions and radio buttons for users to answer
+  -->
+   
+<!-- start of the partial -->
 <section data-ng-controller="AnswersurveysController" data-ng-init="findOneSurvey()">
     <div class="page-header">
         <form name="answerSurveyForm">
+           <!-- bind the survey name from database-->
             <h1 data-ng-bind="answersurvey.name" ng-init="survey=answersurvey"></h1>
 
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" role="tablist">
+               <!--using loop to display all the questions -->
                 <div class="panel panel-default" ng-repeat="question in survey.questions" ng-init="questionGroup=survey.questions">
                     <div class="panel-heading" role="tab" id="{{'heading' + questionGroup.indexOf(question)}}">
                         <h4 class="panel-title">
                             <!--set the value of question-->
+                            <!--question-->
                             <label ng-init="surveyAnswers[questionGroup.indexOf(question)].question= questionGroup.indexOf(question)">Q{{questionGroup.indexOf(question) + 1}}:{{question.questionTxt}}</label>     
                         </h4>              
                     </div>               
@@ -16,6 +27,7 @@
                             <!-- <h1>{{surveyAnswers[questionGroup.indexOf(question)].answer}}</h1>-->
                             <!-- ng-model="surveyAnswers[questionGroup.indexOf(question)].question"-->
                             <div class="radio" ng-repeat="n in question.questionOptions">
+                               <!-- radio button and radio button optin text-->
                                 <label>
                                     <!--set value of answer to model-->
                                     <input type="radio" name="{{'questionRadios' + questionGroup.indexOf(question)}}" required ng-model="surveyAnswers[questionGroup.indexOf(question)].answer" value={{question.questionOptions.indexOf(n)}} id={{question.questionOptions.indexOf(n)}}>
@@ -31,9 +43,11 @@
 
     </div>
     <center>
+       <!-- back button to go back the survey list page and submit button for submit the answer-->
         <button type="button" class="btn btn-danger" ng-click="backToSurveyList()"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
         <button type="button" class="btn btn-success" ng-click="update()" ng-disabled="answerSurveyForm.$invalid"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Submit</button>    
     </center>  
+    <!--display the author and created data of this survey -->
     <small>
         <em class="text-muted">
             Posted on

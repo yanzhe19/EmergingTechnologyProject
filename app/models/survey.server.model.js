@@ -1,3 +1,10 @@
+/**
+File name: surveys.server.model.js
+Author: Zhe Yan & Zida Bi
+Web site name: Survey Elephant
+Description: The model file which contain database schema
+*/
+
 'use strict';
 
 /**

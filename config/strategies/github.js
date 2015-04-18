@@ -1,3 +1,10 @@
+/**
+File name: github.js
+Author: Zhe Yan & Zida Bi
+Website name: Survey Elephant
+Description: the js file which contains the configuration of github oauth
+*/
+
 'use strict';
 
 /**

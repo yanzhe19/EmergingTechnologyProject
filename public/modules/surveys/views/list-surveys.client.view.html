@@ -1,19 +1,31 @@
+<!-- 
+File name : list-survey.client.view.html
+Author: Zhe Yan & Zida Bi
+Website name: survey elephant
+Description: page to list all surveys for the current login user
+-->
+
 <section data-ng-controller="SurveysController" data-ng-init="find()">
     <div class="page-header">
+       <!-- page title-->
         <h1>Surveys</h1>
     </div>
     <div class="list-group">
+       <!-- looping to display all survey items -->
         <a data-ng-repeat="survey in surveys" data-ng-href="#!/surveys/{{survey._id}}" class="list-group-item">
             <div class="row">
+               <!--survey name -->
                 <div class="col-xs-12 col-sm-6">
                     <h3 class="list-group-item-heading" data-ng-bind="survey.name"></h3>
                 </div>
+                <!--survey start time -->
                 <div class="col-sm-3">
                     <small class="list-group-item-text">
 				        Started on: &nbsp;
 				        <span data-ng-bind="survey.startTime | date:'medium'"></span>				        
 			        </small>
                 </div>
+                <!-- survey expire time-->
                 <div class="col-sm-3">
                     <small class="list-group-item-text">
 				        Expire at: &nbsp;
@@ -23,6 +35,7 @@
             </div>
         </a>
     </div>
+    <!--if list is empty, display the below text and a link to create a new survey -->
     <div class="alert alert-warning text-center" data-ng-hide="!surveys.$resolved || surveys.length">
     	No Surveys yet, why don't you <a href="/#!/surveys/choose-survey-template">create one</a>?
     </div>

@@ -1,20 +1,33 @@
-<section data-ng-controller="AnswersurveysController" data-ng-init="findAllSurvey()">
+<!--
+ File name: list-answersurveys.client.view.html
+ Author: Zhe Yan & Zida Bi
+ Web site name: survey elephant
+ Description: answer survey partial which contains the list of avaliable surveys for anonymous users 
+  -->
+   
+<!-- Begin of the section -->
+   <section data-ng-controller="AnswersurveysController" data-ng-init="findAllSurvey()">
     <div class="page-header">
+       <!-- page header -->
         <h1>Answer surveys</h1>
     </div>
     <div class="list-group">
+       <!-- using loop to generate survey list -->
         <a data-ng-repeat="survey in surveys" data-ng-href="#!/answersurveys/{{survey._id}}" class="list-group-item">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
+                   <!-- survey name -->
                     <h3 class="list-group-item-heading" data-ng-bind="survey.name"></h3>
                 </div>
                 <div class="col-sm-3">
+                   <!-- survey start time -->
                     <small class="list-group-item-text">
 				        Started on: &nbsp;
 				        <span data-ng-bind="survey.startTime | date:'medium'"></span>				        
 			        </small>
                 </div>
                 <div class="col-sm-3">
+                   <!-- survey end time -->
                     <small class="list-group-item-text">
 				        Expire at: &nbsp;
 				        <span data-ng-bind="survey.endTime | date:'medium'"></span>
@@ -23,6 +36,7 @@
             </div>
         </a>
     </div>
+    <!-- display if there is no avaliable survey -->
     <div class="alert alert-warning text-center" data-ng-hide="!surveys.$resolved || surveys.length">
     	No Surveys yet.
     </div>

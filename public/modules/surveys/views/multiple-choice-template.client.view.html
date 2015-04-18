@@ -1,34 +1,51 @@
+<!-- 
+File name : multiple-choice-template.client.view.html
+Author: Zhe Yan & Zida Bi
+Website name: survey elephant
+Description: create survey page, only contains multiple choice questions
+-->
+   
+
 <section data-ng-controller="SurveysController" data-ng-init="checkUserLogin()">
+   <!-- page header -->
     <h1>Create your survey</h1>
 
     <form name="questionaryForm">
         <div class="form-group">
+           <!-- survey name -->
             <label for="surveyTemplateName">Survey Name</label>
             <input type="text" class="form-control" id="surveyTemplateName" ng-model="surveyTemplateName" placeholder="Input your survey name" required>
         </div>
 
+       <!--collapse panel header -->
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" role="tablist">
             <div class="panel panel-default" ng-repeat="question in questionGroup">
                 <div class="panel-heading" role="tab" id="{{'heading' + questionGroup.indexOf(question)}}">
                     <h4 class="panel-title questionTitleGroup">
+                       <!-- question header-->
                         <a data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + questionGroup.indexOf(question)}}" aria-expanded="false" aria-controls="{{'collapse' + questionGroup.indexOf(question)}}">
                             <label>Q{{questionGroup.indexOf(question) + 1}}: Multiple Choice</label>                  
                         </a>  
+                        <!--buttons to add or remove questions -->
                         <button type="button" class="btn btn-success btn-circle" ng-click="addQuestion($index)" title="Add Question Below"><i class="glyphicon glyphicon-plus"></i></button>  
                         <button type="button" class="btn btn-warning btn-circle" ng-click="removeQuestion($index)" title="Remove This Question"><i class="glyphicon glyphicon-remove"></i></button>    
                      </h4> 
+                     <!-- question text -->
                      <input type="text" class="form-control" placeholder="Enter your question" ng-model="question.questionTxt" required ng-trim="false">	                     
-                </div>               
+                </div>    
+                <!-- collapse panel body-->           
                 <div id="{{'collapse' + questionGroup.indexOf(question)}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{'heading' + questionGroup.indexOf(question)}}">
                     <div class="panel-body">
                         <div class="form-group"> 
-
+                            <!--button to add radio button when radio not exist -->
                             <button type="button" class="btn btn-success btn-circle" ng-click="addRadio(0, $index)" ng-show="addRemoveAddBtn($index)" title="Add Radio Button"><i class="glyphicon glyphicon-plus"></i></button>                         
                             <div class="radio" ng-repeat="n in question.questionOptions">
                                 <label>
+                                   <!-- radio button and its text -->
                                     <input type="radio" name="{{'questionRadios' + questionGroup.indexOf(question)}}" id={{question.questionOptions.indexOf(n)}} disabled>
                                     <input type="text" class="form-control" placeholder="Enter answer choice" ng-model="n.optionTxt" required ng-trim="false">
                                 </label>
+                                <!--button to add or remove radio buttons -->
                                 <button type="button" class="btn btn-success btn-circle" ng-click="addRadio($index, $parent.$index)" title="Add Radio Button Below"><i class="glyphicon glyphicon-plus"></i></button>
                                 <button type="button" class="btn btn-warning btn-circle" ng-click="removeRadio($index, $parent.$index)" title="Remove This Radio Button"><i class="glyphicon glyphicon-remove"></i></button>
                             </div>
@@ -39,12 +56,14 @@
             </div>
         </div>
 
+       <!--button to add question at bottom -->
         <center>
             <button type="button" class="btn btn-success btn-circle" ng-click="addQuestion(questionGroup.length)" title="Add Question"><i class="glyphicon glyphicon-plus"></i></button>  
         </center>
 
         <br>
 
+       <!-- button to go back or go to next page-->
         <center>
             <button type="button" class="btn btn-danger" ng-click="backToCreateSurvey()" title="Back To Select Another Template"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Back</button> 
             <button type="button" class="btn btn-success" ng-click="goToSetSurveyTime()" ng-disabled="questionaryForm.$invalid || !validateSurveyForm()" title="Next to Select Life Time"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Next</button>    

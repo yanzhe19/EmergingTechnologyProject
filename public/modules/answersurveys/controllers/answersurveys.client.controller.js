@@ -1,3 +1,10 @@
+/**
+File name: answersurveys.client.controller.js
+Author: Zhe Yan & Zida Bi
+Website name: Survey Elephant
+Description: the controller file which contains all functions for answer survey pages
+*/
+
 'use strict';
 
 // Answersurveys controller
